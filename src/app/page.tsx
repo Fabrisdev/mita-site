@@ -96,13 +96,17 @@ export default function Home() {
       />
       <form
         action=""
-        className="bg-purple-800 p-10 flex flex-col justify-center items-center gap-3 rounded-2xl fixed left-30 z-1000"
+        className="bg-purple-800 p-10 flex flex-col justify-center items-center gap-3 rounded-2xl fixed -left-125 z-1000"
+        style={{
+          animation: "slide-in-left 1s ease-out forwards",
+          animationDelay: "5s",
+        }}
       >
         <p className="text-2xl font-bold">Please choose who you are</p>
         <div className="flex flex-col gap-2">
           <ProfileOption
             name="light"
-            onClick={() => setReversed(!reversed)}
+            onClick={() => select("light")}
             selected={selected === "light"}
           />
           <ProfileOption
