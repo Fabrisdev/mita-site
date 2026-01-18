@@ -6,8 +6,16 @@ import { ProfileOption } from "./components/ProfileOption";
 
 export default function Home() {
   const [selected, setSelected] = useState<AllowedPeople>();
+  const introRef = useRef<HTMLVideoElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [reversed, setReversed] = useState(false);
+  const [showingIntro, setShowingIntro] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setShowingIntro(false);
+    }, 5000);
+  }, []);
 
   function playVideoBackwards(video: HTMLVideoElement) {
     const fps = 30;
@@ -29,6 +37,7 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
+    if (showingIntro) return;
     const video = videoRef.current;
     if (!video) return;
 
@@ -44,10 +53,11 @@ export default function Home() {
 
     video.addEventListener("timeupdate", handleTimeUpdate);
     return () => video.removeEventListener("timeupdate", handleTimeUpdate);
-  }, [reversed]);
+  }, [reversed, showingIntro]);
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: playVideoBackwards function should not be a dependency
   useEffect(() => {
+    if (showingIntro) return;
     const video = videoRef.current;
     if (!video) return;
 
@@ -56,7 +66,7 @@ export default function Home() {
       return;
     }
     video.play();
-  }, [reversed]);
+  }, [reversed, showingIntro]);
 
   function select(person: AllowedPeople) {
     setSelected(person);
@@ -65,15 +75,28 @@ export default function Home() {
   return (
     <main className="h-svh flex justify-center items-center bg-cover">
       <video
+        ref={introRef}
+        autoPlay
+        muted
+        src="/intro.mp4"
+        className="z-200 transition"
+        style={{
+          opacity: showingIntro ? 1 : 0,
+        }}
+      />
+      <video
         ref={videoRef}
         autoPlay
         muted
         src="/mita_stand.mp4"
         className="fixed"
-      ></video>
+        style={{
+          opacity: showingIntro ? 0 : 1,
+        }}
+      />
       <form
         action=""
-        className="bg-purple-800 p-10 flex flex-col justify-center items-center gap-3 rounded-2xl fixed left-30"
+        className="bg-purple-800 p-10 flex flex-col justify-center items-center gap-3 rounded-2xl fixed left-30 z-1000"
       >
         <p className="text-2xl font-bold">Please choose who you are</p>
         <div className="flex flex-col gap-2">
