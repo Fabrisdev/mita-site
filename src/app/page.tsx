@@ -1,17 +1,62 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { AllowedPeople } from "@/types";
 import { ProfileOption } from "./components/ProfileOption";
 
 export default function Home() {
   const [selected, setSelected] = useState<AllowedPeople>();
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [reversed, setReversed] = useState(false);
+
+  function playVideoBackwards(video: HTMLVideoElement) {
+    const fps = 30;
+    const intervalRewind = setInterval(() => {
+      if (video.currentTime <= 0.05) {
+        clearInterval(intervalRewind);
+        video.currentTime = 0;
+        setReversed(false);
+      } else {
+        video.currentTime += -(1 / fps);
+      }
+    }, 1000 / fps);
+  }
 
   useEffect(() => {
     const bg = new Audio("/bg-music.mp3");
     bg.loop = true;
     bg.play();
   }, []);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const handleTimeUpdate = () => {
+      if (!reversed && video.currentTime >= video.duration - 0.05) {
+        setReversed(true);
+      }
+
+      if (reversed && video.currentTime <= 0.05) {
+        setReversed(false);
+      }
+    };
+
+    video.addEventListener("timeupdate", handleTimeUpdate);
+    return () => video.removeEventListener("timeupdate", handleTimeUpdate);
+  }, [reversed]);
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: playVideoBackwards function should not be a dependency
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (reversed) {
+      playVideoBackwards(video);
+      return;
+    }
+    video.play();
+  }, [reversed]);
 
   function select(person: AllowedPeople) {
     setSelected(person);
@@ -20,9 +65,9 @@ export default function Home() {
   return (
     <main className="h-svh flex justify-center items-center bg-cover">
       <video
+        ref={videoRef}
         autoPlay
         muted
-        loop
         src="/mita_stand.mp4"
         className="fixed"
       ></video>
@@ -34,7 +79,7 @@ export default function Home() {
         <div className="flex flex-col gap-2">
           <ProfileOption
             name="light"
-            onClick={() => select("light")}
+            onClick={() => setReversed(!reversed)}
             selected={selected === "light"}
           />
           <ProfileOption
