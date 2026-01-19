@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 
 const secret = new TextEncoder().encode(process.env.JWT_SECRET);
 
-export async function middleware(req: NextRequest) {
+export async function proxy(req: NextRequest) {
   const session = req.cookies.get("session");
 
   if (!session) {
