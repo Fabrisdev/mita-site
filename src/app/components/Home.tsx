@@ -92,7 +92,7 @@ export function Home({ initialLoggedIn, avatar, id, username }: Props) {
 
   return (
     <main className="h-svh flex justify-center items-center overflow-hidden">
-      {initialLoggedIn && (
+      {initialLoggedIn && loggedIn && (
         <LoggedInAsPopup avatar={avatar} id={id} username={username} />
       )}
 
