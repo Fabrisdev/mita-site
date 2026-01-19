@@ -91,7 +91,7 @@ export function Home({ initialLoggedIn, avatar, id, username }: Props) {
   }
 
   return (
-    <main className="h-svh flex justify-center items-center">
+    <main className="h-svh flex justify-center items-center overflow-hidden">
       {initialLoggedIn && (
         <LoggedInAsPopup avatar={avatar} id={id} username={username} />
       )}
