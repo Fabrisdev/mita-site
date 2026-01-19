@@ -6,7 +6,7 @@ type Props = {
 
 export function LogInButton({ loggedIn }: Props) {
   const PRODUCTION_HREF =
-    "https://discord.com/oauth2/authorize?client_id=1461518757015851111&response_type=code&redirect_uri=https%3A%2F%2Fmita-bot.fabris.dev&scope=identify";
+    "https://discord.com/oauth2/authorize?client_id=1461518757015851111&response_type=code&redirect_uri=https%3A%2F%2Fmita-bot.fabris.dev%2Fapi%2Fverify&scope=identify";
   const DEVELOPMENT_HREF =
     "https://discord.com/oauth2/authorize?client_id=1461518757015851111&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fapi%2Fverify&scope=identify";
   return (
