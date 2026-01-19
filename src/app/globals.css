@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import 'tailwind-animations';
 
 :root {
   --background: #ffffff;
@@ -25,7 +26,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-@keyframes slide-in-left {
+@keyframes custom-slide-in-left {
   from {
     left: -500px;
     opacity: 0;
