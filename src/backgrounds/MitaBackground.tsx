@@ -1,3 +1,5 @@
+"use client";
+
 import { useMitaBackground } from "./hooks/useMitaBackground";
 
 export function MitaBackground() {

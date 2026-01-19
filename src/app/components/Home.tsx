@@ -1,6 +1,3 @@
-"use client";
-
-import { useState } from "react";
 import { MitaBotLogo } from "@/icons/MitaBotLogo";
 import { MitaBackground } from "../../backgrounds/MitaBackground";
 import { HomeContainer } from "./HomeContainer";
@@ -24,19 +21,17 @@ type Props =
     };
 
 export function Home({ initialLoggedIn, avatar, id, username }: Props) {
-  const [loggedIn, setLoggedIn] = useState(initialLoggedIn);
-
   return (
     <HomeContainer>
-      {initialLoggedIn && loggedIn && (
+      {initialLoggedIn && (
         <LoggedInAsPopup avatar={avatar} id={id} username={username} />
       )}
 
       <MitaBackground />
       <MainMenu>
         <MitaBotLogo />
-        <LogInButton loggedIn={loggedIn} />
-        <LogoutButton loggedIn={loggedIn} uiLogout={() => setLoggedIn(false)} />
+        <LogInButton loggedIn={initialLoggedIn} />
+        <LogoutButton loggedIn={initialLoggedIn} />
       </MainMenu>
     </HomeContainer>
   );

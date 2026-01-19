@@ -1,12 +1,17 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+
 type Props = {
   loggedIn: boolean;
-  uiLogout: () => void;
 };
 
-export function LogoutButton({ loggedIn, uiLogout }: Props) {
+export function LogoutButton({ loggedIn }: Props) {
+  const router = useRouter();
+
   async function handleLogout() {
     await fetch("/api/logout", { method: "POST" });
-    uiLogout();
+    router.refresh();
   }
 
   if (!loggedIn) return null;
