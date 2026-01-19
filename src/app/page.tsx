@@ -34,6 +34,9 @@ export default function Home() {
     const bg = new Audio("/bg-music.mp3");
     bg.loop = true;
     bg.play();
+    return () => {
+      bg.pause();
+    };
   }, []);
 
   useEffect(() => {
