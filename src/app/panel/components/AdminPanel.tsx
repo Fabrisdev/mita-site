@@ -1,4 +1,6 @@
-import { GET as checkOk } from "@/app/api/admin/ok/route";
+"use client";
+
+import { useEffect, useState } from "react";
 import { LoggedInAsPopup } from "@/auth/components/LoggedInAsPopup";
 
 type Props = {
@@ -7,8 +9,28 @@ type Props = {
   avatar: string;
 };
 
-export async function AdminPanel({ username, id, avatar }: Props) {
-  const isOK = await checkOk().then((res) => res.ok);
+export function AdminPanel({ username, id, avatar }: Props) {
+  const [isOK, setIsOK] = useState(false);
+
+  useEffect(() => {
+    fetch("/api/admin/ok")
+      .then(() => setIsOK(true))
+      .catch(() => setIsOK(false));
+  }, []);
+
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const data = Object.fromEntries(formData.entries());
+
+    const res = await fetch("/api/admin/send", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+    if (res.ok) return alert("Message sent");
+    alert("Couldn't send message");
+  }
 
   return (
     <div>
@@ -19,7 +41,7 @@ export async function AdminPanel({ username, id, avatar }: Props) {
       </span>
       <LoggedInAsPopup username={username} id={id} avatar={avatar} />
       <form
-        action="/api/admin/send"
+        onSubmit={(e) => handleSubmit(e)}
         method="POST"
         className="bg-gray-500 flex flex-col w-min p-2"
       >
