@@ -1,9 +1,9 @@
 import { MitaBotLogo } from "@/icons/MitaBotLogo";
+import { LoggedInAsPopup } from "../../auth/components/LoggedInAsPopup";
+import { LogInButton } from "../../auth/components/LogInButton";
+import { LogoutButton } from "../../auth/components/LogoutButton";
 import { MitaBackground } from "../../backgrounds/MitaBackground";
 import { HomeContainer } from "./HomeContainer";
-import { LoggedInAsPopup } from "./LoggedInAsPopup";
-import { LogInButton } from "./LogInButton";
-import { LogoutButton } from "./LogoutButton";
 import { MainMenu } from "./MainMenu";
 
 type Props =
