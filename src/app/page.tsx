@@ -94,39 +94,16 @@ export default function Home() {
           opacity: showingIntro ? 0 : 1,
         }}
       />
-      <form
-        action=""
+      <a
+        href="https://discord.com/oauth2/authorize?client_id=1461518757015851111&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fapi%2Fverify&scope=identify"
         className="bg-purple-800 p-10 flex flex-col justify-center items-center gap-3 rounded-2xl fixed -left-125 z-1000"
         style={{
           animation: "slide-in-left 1s ease-out forwards",
           animationDelay: "5s",
         }}
       >
-        <p className="text-2xl font-bold">Please choose who you are</p>
-        <div className="flex flex-col gap-2">
-          <ProfileOption
-            name="light"
-            onClick={() => select("light")}
-            selected={selected === "light"}
-          />
-          <ProfileOption
-            name="pandita"
-            onClick={() => select("pandita")}
-            selected={selected === "pandita"}
-          />
-          <ProfileOption
-            name="pau"
-            onClick={() => select("pau")}
-            selected={selected === "pau"}
-          />
-        </div>
-
-        <input
-          type="submit"
-          value="Login"
-          className="bg-pink-500 p-2 w-full cursor-pointer hover:bg-pink-600 rounded-xs"
-        />
-      </form>
+        Log in with Discord
+      </a>
     </main>
   );
 }
