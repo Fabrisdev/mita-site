@@ -1,0 +1,9 @@
+export async function POST(req: Request) {
+  const data = await req.json();
+  const res = await fetch(`${process.env.BOT_API_URL}/send-message`, {
+    method: "POST",
+    body: JSON.stringify(data),
+  });
+  if (res.ok) return new Response("", { status: 200 });
+  return new Response("Wasn't able to send message", { status: 500 });
+}
