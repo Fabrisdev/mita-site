@@ -70,7 +70,6 @@ async function storeJWTInCookies(data: Record<string, string>) {
   cookiesStore.set("session", jwt, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
-    sameSite: "strict",
     path: "/",
   });
 }
