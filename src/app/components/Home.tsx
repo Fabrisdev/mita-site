@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import { MitaBotLogo } from "@/icons/MitaBotLogo";
+import { MitaBackground } from "../../backgrounds/MitaBackground";
 import { LoggedInAsPopup } from "./LoggedInAsPopup";
 import { LogInButton } from "./LogInButton";
-import { MitaBackground } from "./MitaBackground";
 
 type Props =
   | {
