@@ -1,8 +1,13 @@
+import { SignJWT } from "jose";
+import { cookies } from "next/headers";
+
 const ALLOWED_USER_IDS = [
   "317105612100075520",
   "478728814399324188",
   "1343734688300142664",
 ];
+
+const secret = new TextEncoder().encode(process.env.JWT_SECRET);
 
 export async function GET(req: Request) {
   const url = new URL(req.url);
@@ -19,7 +24,14 @@ export async function GET(req: Request) {
   const { id } = userData;
   if (!ALLOWED_USER_IDS.includes(id))
     return new Response("ID not allowed", { status: 400 });
-  return new Response(userData.username);
+
+  await storeJWTInCookies({
+    id,
+    username: userData.username,
+    avatar: userData.avatar,
+  });
+
+  return Response.redirect(new URL("/panel", req.url));
 }
 
 async function validateCode(code: string) {
@@ -45,4 +57,20 @@ async function getUserData(accessToken: string) {
     headers: { Authorization: `Bearer ${accessToken}` },
   });
   return await response.json();
+}
+
+async function storeJWTInCookies(data: Record<string, string>) {
+  const jwt = await new SignJWT(data)
+    .setProtectedHeader({ alg: "HS256" })
+    .setIssuedAt()
+    .setExpirationTime("7d")
+    .sign(secret);
+
+  const cookiesStore = await cookies();
+  cookiesStore.set("session", jwt, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "strict",
+    path: "/",
+  });
 }
