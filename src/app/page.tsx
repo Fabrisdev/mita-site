@@ -90,16 +90,20 @@ export default function Home() {
           opacity: showingIntro ? 0 : 1,
         }}
       />
-      <a
-        href="https://discord.com/oauth2/authorize?client_id=1461518757015851111&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fapi%2Fverify&scope=identify"
-        className="bg-purple-800 p-10 flex flex-col justify-center items-center gap-3 rounded-2xl fixed -left-125 z-1000"
+      <div
+        className="fixed -left-125 animation-delay-[5s] z-1000"
         style={{
-          animation: "slide-in-left 1s ease-out forwards",
+          animation: "custom-slide-in-left 1s ease-out forwards",
           animationDelay: "5s",
         }}
       >
-        Log in with Discord
-      </a>
+        <a
+          href="https://discord.com/oauth2/authorize?client_id=1461518757015851111&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fapi%2Fverify&scope=identify"
+          className={`bg-purple-800 p-2 flex flex-col justify-center items-center gap-3 rounded-xs hover:bg-pink-500 transition min-w-60 border border-pink-500 animate-heartbeat animate-iteration-count-infinite animate-delay-[6s] animate-duration-3000`}
+        >
+          Log in with Discord
+        </a>
+      </div>
     </main>
   );
 }
