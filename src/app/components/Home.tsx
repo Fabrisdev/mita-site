@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { LoggedInAsPopup } from "./LoggedInAsPopup";
 
 type Props =
   | {
@@ -17,7 +18,7 @@ type Props =
       username?: never;
     };
 
-export function Home({ initialLoggedIn, avatar }: Props) {
+export function Home({ initialLoggedIn, avatar, id, username }: Props) {
   const introRef = useRef<HTMLVideoElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [reversed, setReversed] = useState(false);
@@ -90,7 +91,11 @@ export function Home({ initialLoggedIn, avatar }: Props) {
   }
 
   return (
-    <main className="h-svh flex justify-center items-center bg-cover">
+    <main className="h-svh flex justify-center items-center">
+      {initialLoggedIn && (
+        <LoggedInAsPopup avatar={avatar} id={id} username={username} />
+      )}
+
       <video
         ref={introRef}
         autoPlay
