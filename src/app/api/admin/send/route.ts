@@ -1,5 +1,6 @@
 export async function POST(req: Request) {
-  const data = await req.json();
+  const data = await req.json().catch(() => null);
+  if (data === null) return new Response("Missing fields", { status: 400 });
   const res = await fetch(`${process.env.BOT_API_URL}/send-message`, {
     method: "POST",
     body: JSON.stringify(data),
