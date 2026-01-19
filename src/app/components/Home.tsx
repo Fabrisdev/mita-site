@@ -8,30 +8,30 @@ import { MainMenu } from "./MainMenu";
 
 type Props =
   | {
-      initialLoggedIn: true;
+      loggedIn: true;
       id: string;
       avatar: string;
       username: string;
     }
   | {
-      initialLoggedIn: false;
+      loggedIn: false;
       id?: never;
       avatar?: never;
       username?: never;
     };
 
-export function Home({ initialLoggedIn, avatar, id, username }: Props) {
+export function Home({ loggedIn, avatar, id, username }: Props) {
   return (
     <HomeContainer>
-      {initialLoggedIn && (
+      {loggedIn && (
         <LoggedInAsPopup avatar={avatar} id={id} username={username} />
       )}
 
       <MitaBackground />
       <MainMenu>
         <MitaBotLogo />
-        <LogInButton loggedIn={initialLoggedIn} />
-        <LogoutButton loggedIn={initialLoggedIn} />
+        <LogInButton loggedIn={loggedIn} />
+        <LogoutButton loggedIn={loggedIn} />
       </MainMenu>
     </HomeContainer>
   );
