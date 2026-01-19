@@ -148,7 +148,7 @@ export function Home({ initialLoggedIn, avatar, id, username }: Props) {
             className="absolute -top-5 -left-5 -rotate-30"
           />
           <p className="font-bold">
-            {loggedIn ? "Go to admin panel" : "Log in with Discord"}
+            {loggedIn ? "Visit admin panel" : "Log in with Discord"}
           </p>
         </a>
         {loggedIn && (
