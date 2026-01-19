@@ -1,3 +1,4 @@
+import { GET as checkOk } from "@/app/api/admin/ok/route";
 import { LoggedInAsPopup } from "@/auth/components/LoggedInAsPopup";
 
 type Props = {
@@ -6,9 +7,16 @@ type Props = {
   avatar: string;
 };
 
-export function AdminPanel({ username, id, avatar }: Props) {
+export async function AdminPanel({ username, id, avatar }: Props) {
+  const isOK = await checkOk().then((res) => res.ok);
+
   return (
     <div>
+      <span
+        className={`w-40 h-20 font-bold p-2 rounded-xs ${isOK ? "bg-green-400" : "bg-red-400"}`}
+      >
+        {isOK ? "ONLINE" : "OFFLINE"}
+      </span>
       <LoggedInAsPopup username={username} id={id} avatar={avatar} />
       <form
         action="/api/admin/send-message"
