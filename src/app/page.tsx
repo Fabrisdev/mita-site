@@ -1,11 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import type { AllowedPeople } from "@/types";
-import { ProfileOption } from "./components/ProfileOption";
 
 export default function Home() {
-  const [selected, setSelected] = useState<AllowedPeople>();
   const introRef = useRef<HTMLVideoElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [reversed, setReversed] = useState(false);
@@ -70,10 +67,6 @@ export default function Home() {
     }
     video.play();
   }, [reversed, showingIntro]);
-
-  function select(person: AllowedPeople) {
-    setSelected(person);
-  }
 
   return (
     <main className="h-svh flex justify-center items-center bg-cover">
