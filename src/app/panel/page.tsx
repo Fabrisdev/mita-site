@@ -1,7 +1,7 @@
 import { jwtVerify } from "jose";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { LoggedInAsPopup } from "@/auth/components/LoggedInAsPopup";
+import { AdminPanel } from "./components/AdminPanel";
 
 const secret = new TextEncoder().encode(process.env.JWT_SECRET);
 
@@ -13,12 +13,10 @@ export default async function AdminPanelPage() {
   const { payload } = verifyResult;
   const { avatar, id, username } = payload;
   return (
-    <div>
-      <LoggedInAsPopup
-        avatar={avatar as string}
-        id={id as string}
-        username={username as string}
-      />
-    </div>
+    <AdminPanel
+      id={id as string}
+      username={username as string}
+      avatar={avatar as string}
+    />
   );
 }
