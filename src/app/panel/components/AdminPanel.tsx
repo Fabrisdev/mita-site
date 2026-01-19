@@ -24,7 +24,6 @@ export async function AdminPanel({ username, id, avatar }: Props) {
         className="bg-gray-500 flex flex-col w-min p-2"
       >
         <input type="text" name="message" placeholder="Message" />
-        <input type="text" name="guildId" placeholder="Guild ID" />
         <input type="text" name="channelId" placeholder="Channel ID" />
         <input type="submit" value="Send" />
       </form>
