@@ -1,27 +1,29 @@
 "use client";
 
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 type Props =
   | {
-      loggedIn: true;
+      initialLoggedIn: true;
       id: string;
       avatar: string;
       username: string;
     }
   | {
-      loggedIn: false;
+      initialLoggedIn: false;
       id?: never;
       avatar?: never;
       username?: never;
     };
 
-export function Home({ loggedIn, avatar }: Props) {
+export function Home({ initialLoggedIn, avatar }: Props) {
   const introRef = useRef<HTMLVideoElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [reversed, setReversed] = useState(false);
   const [showingIntro, setShowingIntro] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(initialLoggedIn);
 
   useEffect(() => {
     setTimeout(() => {
@@ -83,6 +85,11 @@ export function Home({ loggedIn, avatar }: Props) {
     video.play();
   }, [reversed, showingIntro]);
 
+  async function handleLogout() {
+    await fetch("/api/logout", { method: "POST" });
+    setLoggedIn(false);
+  }
+
   return (
     <main className="h-svh flex justify-center items-center bg-cover">
       <video
@@ -132,8 +139,19 @@ export function Home({ loggedIn, avatar }: Props) {
             height={40}
             className="absolute -top-5 -left-5 -rotate-30"
           />
-          <p className="font-bold">Log in with Discord</p>
+          <p className="font-bold">
+            {loggedIn ? "Go to admin panel" : "Log in with Discord"}
+          </p>
         </a>
+        {loggedIn && (
+          <button
+            type="button"
+            className="bg-purple-800 p-2 flex justify-center items-center gap-3 rounded-xs hover:bg-pink-500 transition duration-1500 min-w-60 border-2 border-pink-500 animate-heartbeat animate-iteration-count-infinite animate-delay-[7s] animate-duration-3000 font-bold cursor-pointer"
+            onClick={handleLogout}
+          >
+            Log out
+          </button>
+        )}
       </div>
     </main>
   );
