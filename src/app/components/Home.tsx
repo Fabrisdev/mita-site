@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { MitaBotLogo } from "@/icons/MitaBotLogo";
 import { MitaBackground } from "../../backgrounds/MitaBackground";
+import { HomeContainer } from "./HomeContainer";
 import { LoggedInAsPopup } from "./LoggedInAsPopup";
 import { LogInButton } from "./LogInButton";
 import { LogoutButton } from "./LogoutButton";
@@ -26,7 +27,7 @@ export function Home({ initialLoggedIn, avatar, id, username }: Props) {
   const [loggedIn, setLoggedIn] = useState(initialLoggedIn);
 
   return (
-    <main className="h-svh flex justify-center items-center overflow-hidden">
+    <HomeContainer>
       {initialLoggedIn && loggedIn && (
         <LoggedInAsPopup avatar={avatar} id={id} username={username} />
       )}
@@ -37,6 +38,6 @@ export function Home({ initialLoggedIn, avatar, id, username }: Props) {
         <LogInButton loggedIn={loggedIn} />
         <LogoutButton loggedIn={loggedIn} uiLogout={() => setLoggedIn(false)} />
       </MainMenu>
-    </main>
+    </HomeContainer>
   );
 }
