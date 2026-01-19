@@ -92,12 +92,18 @@ export default function Home() {
         }}
       />
       <div
-        className="fixed -left-125 animation-delay-[5s] z-1000"
+        className="fixed -left-125 animation-delay-[5s] z-1000 bg-purple-600 p-10 rounded-xl flex flex-col gap-7"
         style={{
           animation: "custom-slide-in-left 1s ease-out forwards",
           animationDelay: "5s",
         }}
       >
+        <Image
+          src="/miside-logo.webp"
+          alt="Miside logo"
+          width={300}
+          height={77}
+        />
         <a
           href="https://discord.com/oauth2/authorize?client_id=1461518757015851111&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fapi%2Fverify&scope=identify"
           className="bg-purple-800 p-2 flex justify-center items-center gap-3 rounded-xs hover:bg-pink-500 transition min-w-60 border border-pink-500 animate-heartbeat animate-iteration-count-infinite animate-delay-[6s] animate-duration-3000 relative"
