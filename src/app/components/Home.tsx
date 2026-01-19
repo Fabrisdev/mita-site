@@ -24,7 +24,12 @@ export function Home({ loggedIn, avatar, id, username }: Props) {
   return (
     <HomeContainer>
       {loggedIn && (
-        <LoggedInAsPopup avatar={avatar} id={id} username={username} />
+        <LoggedInAsPopup
+          avatar={avatar}
+          id={id}
+          username={username}
+          delay="5s"
+        />
       )}
 
       <MitaBackground />
