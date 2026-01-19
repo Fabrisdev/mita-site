@@ -13,6 +13,7 @@ export async function middleware(req: NextRequest) {
 
   try {
     await jwtVerify(session.value, secret);
+
     return NextResponse.next();
   } catch {
     return NextResponse.redirect(new URL("/", req.url));
