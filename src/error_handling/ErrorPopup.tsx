@@ -16,7 +16,7 @@ export function ErrorPopup({ error }: Props) {
     <dialog
       open
       className="rounded-lg p-6 bg-purple-400 text-white border-2
-                 shadow-[0_0_0_9999px_rgba(0,0,0,0.5)] z-9999 absolute -fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                 shadow-[0_0_0_9999px_rgba(0,0,0,0.5)] z-9999 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
     >
       <h2 className="text-xl font-bold mb-2">Error</h2>
       <p className="mb-4">
