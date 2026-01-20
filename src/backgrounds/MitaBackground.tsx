@@ -12,7 +12,7 @@ export function MitaBackground() {
         autoPlay
         muted
         src="/intro.mp4"
-        className="z-200 transition"
+        className="z-200 transition w-svw h-svh object-cover"
         style={{
           opacity: showingIntro ? 1 : 0,
         }}
@@ -22,7 +22,7 @@ export function MitaBackground() {
         autoPlay
         muted
         src="/mita_stand.mp4"
-        className="fixed"
+        className="fixed w-svw h-svh object-cover"
         style={{
           opacity: showingIntro ? 0 : 1,
         }}
