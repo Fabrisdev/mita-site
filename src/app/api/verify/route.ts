@@ -17,13 +17,13 @@ export async function GET(req: Request) {
 
   const validatedResponse = await validateCode(code);
   if (!validatedResponse.ok)
-    return new Response("Invalid code provided", { status: 400 });
+    return Response.redirect(new URL("/?error=invalid_code", req.url));
 
   const data = await validatedResponse.json();
   const userData = await getUserData(data.access_token);
   const { id } = userData;
   if (!ALLOWED_USER_IDS.includes(id))
-    return new Response("ID not allowed", { status: 400 });
+    return Response.redirect(new URL("/?error=not_allowed", req.url));
 
   await storeJWTInCookies({
     id,
