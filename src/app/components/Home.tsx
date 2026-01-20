@@ -1,3 +1,4 @@
+import { ErrorPopup } from "@/error_handling/ErrorPopup";
 import { MitaBotLogo } from "@/icons/MitaBotLogo";
 import { LoggedInAsPopup } from "../../auth/components/LoggedInAsPopup";
 import { LogInButton } from "../../auth/components/LogInButton";
@@ -12,17 +13,20 @@ type Props =
       id: string;
       avatar: string;
       username: string;
+      error?: string;
     }
   | {
       loggedIn: false;
       id?: never;
       avatar?: never;
       username?: never;
+      error?: string;
     };
 
-export function Home({ loggedIn, avatar, id, username }: Props) {
+export function Home({ loggedIn, avatar, id, username, error }: Props) {
   return (
     <HomeContainer>
+      <ErrorPopup error={error} />
       {loggedIn && (
         <LoggedInAsPopup
           avatar={avatar}
