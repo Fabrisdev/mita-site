@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Mita site",
-  description: "Easily manage mita's bot",
+  title: "Mita bot",
+  description: "Easily manage Mita's bot",
 };
 
 export default function RootLayout({
