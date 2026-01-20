@@ -37,3 +37,13 @@ body {
     opacity: 1;
   }
 }
+
+@keyframes mobile-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
