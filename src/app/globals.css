@@ -33,7 +33,6 @@ body {
   }
 
   to {
-    transform: translateX(0);
     left: 120px;
     opacity: 1;
   }
