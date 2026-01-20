@@ -18,7 +18,7 @@ export function ErrorPopup({ error }: Props) {
       className="rounded-lg p-4 lg:p-6 bg-purple-400 text-white border-2
                  shadow-[0_0_0_9999px_rgba(0,0,0,0.5)] z-9999 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[95svw] max-w-lg"
     >
-      <h2 className="text-xl font-bold mb-2">Error</h2>
+      <h2 className="text-xl font-bold mb-2">Notice</h2>
       <p className="mb-4">
         {isKnownError(error)
           ? messages[error]
@@ -28,9 +28,9 @@ export function ErrorPopup({ error }: Props) {
       <form method="dialog" className="text-right">
         <button
           type="submit"
-          className="px-4 py-2 rounded bg-purple-800 cursor-pointer font-bold"
+          className="px-4 py-2 rounded bg-purple-800 cursor-pointer font-bold hover:bg-purple-900 transition"
         >
-          OK
+          Understood
         </button>
       </form>
     </dialog>
