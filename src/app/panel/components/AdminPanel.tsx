@@ -2,6 +2,7 @@ import { LoggedInAsPopup } from "@/auth/components/LoggedInAsPopup";
 import { BotStatus } from "./BotStatus";
 import { Header } from "./Header";
 import { SendMessageForm } from "./SendMessageForm";
+import { Sidebar } from "./Sidebar";
 
 type Props = {
   username: string;
@@ -11,7 +12,7 @@ type Props = {
 
 export function AdminPanel({ username, id, avatar }: Props) {
   return (
-    <div>
+    <div className="bg-purple-950 min-h-svh">
       <Header>
         <BotStatus />
         <LoggedInAsPopup
@@ -21,8 +22,12 @@ export function AdminPanel({ username, id, avatar }: Props) {
           disableDefaultPositioning
         />
       </Header>
-
-      <SendMessageForm />
+      <div className="flex">
+        <Sidebar />
+        <div className="m-5">
+          <SendMessageForm />
+        </div>
+      </div>
     </div>
   );
 }

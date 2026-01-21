@@ -19,11 +19,25 @@ export function SendMessageForm() {
     <form
       onSubmit={(e) => handleSubmit(e)}
       method="POST"
-      className="bg-gray-500 flex flex-col w-min p-2"
+      className="bg-purple-600 flex flex-col p-4 border-2 rounded-md gap-3"
     >
-      <input type="text" name="message" placeholder="Message" />
-      <input type="text" name="channelId" placeholder="Channel ID" />
-      <input type="submit" value="Send" />
+      <input
+        type="text"
+        name="message"
+        placeholder="Message"
+        className="border-2 p-1 rounded-md"
+      />
+      <input
+        type="text"
+        name="channelId"
+        placeholder="Channel ID"
+        className="border-2 p-1 rounded-md"
+      />
+      <input
+        type="submit"
+        value="Send"
+        className="bg-pink-400 hover:bg-pink-500 border-2 rounded-md p-1 font-bold cursor-pointer transition"
+      />
     </form>
   );
 }
