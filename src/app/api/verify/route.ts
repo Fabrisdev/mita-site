@@ -5,6 +5,7 @@ const ALLOWED_USER_IDS = [
   "317105612100075520",
   "478728814399324188",
   "1343734688300142664",
+  "1316452290990702653",
 ];
 
 const secret = new TextEncoder().encode(process.env.JWT_SECRET);
