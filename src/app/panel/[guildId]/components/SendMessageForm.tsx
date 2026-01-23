@@ -34,12 +34,6 @@ export function SendMessageForm({ jwt }: Props) {
         placeholder="Message"
         className="border-2 p-1 rounded-md"
       />
-      <input
-        type="text"
-        name="channelId"
-        placeholder="Channel ID"
-        className="border-2 p-1 rounded-md"
-      />
       <ChannelSelector jwt={jwt} />
       <input
         type="submit"
