@@ -2,7 +2,11 @@
 
 import { ChannelSelector } from "./ChannelSelector";
 
-export function SendMessageForm() {
+type Props = {
+  jwt: string;
+};
+
+export function SendMessageForm({ jwt }: Props) {
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
@@ -36,7 +40,7 @@ export function SendMessageForm() {
         placeholder="Channel ID"
         className="border-2 p-1 rounded-md"
       />
-      <ChannelSelector />
+      <ChannelSelector jwt={jwt} />
       <input
         type="submit"
         value="Send"

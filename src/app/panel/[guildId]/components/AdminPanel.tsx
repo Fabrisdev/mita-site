@@ -8,9 +8,10 @@ type Props = {
   username: string;
   id: string;
   avatar: string;
+  jwt: string;
 };
 
-export function AdminPanel({ username, id, avatar }: Props) {
+export function AdminPanel({ username, id, avatar, jwt }: Props) {
   return (
     <div className="bg-purple-950 min-h-svh">
       <Header>
@@ -25,7 +26,7 @@ export function AdminPanel({ username, id, avatar }: Props) {
       <div className="flex">
         <Sidebar />
         <div className="m-5">
-          <SendMessageForm />
+          <SendMessageForm jwt={jwt} />
         </div>
       </div>
     </div>

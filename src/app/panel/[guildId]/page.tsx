@@ -17,6 +17,7 @@ export default async function AdminPanelPage() {
       id={id as string}
       username={username as string}
       avatar={avatar as string}
+      jwt={session.value}
     />
   );
 }

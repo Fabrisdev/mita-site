@@ -1,20 +1,26 @@
 "use client";
 
+import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { BOT_API_URL } from "@/consts";
 
-export function ChannelSelector() {
+type Props = {
+  jwt: string;
+};
+
+export function ChannelSelector({ jwt }: Props) {
+  const { guildId } = useParams<{ guildId: string }>();
   const [channels, setChannels] = useState<{ name: string; id: string }[]>([]);
 
-  function fetchChannels() {
-    fetch(`${BOT_API_URL}/channel/1461519620660924543`)
+  useEffect(() => {
+    fetch(`${BOT_API_URL}/${guildId}/channel`, {
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => setChannels(data))
       .catch(() => null);
-  }
-
-  useEffect(() => {
-    fetchChannels();
   }, []);
 
   return (
