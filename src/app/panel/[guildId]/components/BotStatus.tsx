@@ -5,14 +5,16 @@ import { BOT_API_URL } from "@/consts";
 
 export function BotStatus() {
   const [isOnline, setIsOnline] = useState(false);
+  const [lastCheckedAt, setLastCheckedAt] = useState<Date | null>(null);
 
   useEffect(() => {
     fetch(`${BOT_API_URL}/status/ok`)
       .then(() => setIsOnline(true))
-      .catch(() => setIsOnline(false));
+      .catch(() => setIsOnline(false))
+      .finally(() => setLastCheckedAt(new Date()));
   }, []);
 
-  const formattedTime = new Date().toLocaleTimeString("en-US", {
+  const formattedTime = lastCheckedAt?.toLocaleTimeString("en-US", {
     hour12: true,
     hour: "numeric",
     minute: "2-digit",
