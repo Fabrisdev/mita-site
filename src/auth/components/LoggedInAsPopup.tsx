@@ -21,7 +21,6 @@ export function LoggedInAsPopup({
         animationDelay: delay ?? "0",
       }}
     >
-      {/** biome-ignore lint/performance/noImgElement: This image does not come from my site */}
       <img
         src={avatarUrl}
         alt="Avatar icon"
