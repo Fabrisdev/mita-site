@@ -1,1 +1,1 @@
-export const BOT_API_URL = "http://pauisdev.ddns.net:9000/api";
+export const BOT_API_URL = "https://pauisdev.ddns.net/api";
