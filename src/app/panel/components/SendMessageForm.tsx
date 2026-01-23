@@ -1,5 +1,7 @@
 "use client";
 
+import { ChannelSelector } from "./ChannelSelector";
+
 export function SendMessageForm() {
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -21,6 +23,7 @@ export function SendMessageForm() {
       method="POST"
       className="bg-purple-600 flex flex-col p-4 border-2 rounded-md gap-3"
     >
+      <p>Send a message to a channel</p>
       <input
         type="text"
         name="message"
@@ -33,6 +36,7 @@ export function SendMessageForm() {
         placeholder="Channel ID"
         className="border-2 p-1 rounded-md"
       />
+      <ChannelSelector />
       <input
         type="submit"
         value="Send"
