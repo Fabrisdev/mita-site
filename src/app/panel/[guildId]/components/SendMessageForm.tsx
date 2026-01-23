@@ -1,5 +1,7 @@
 "use client";
 
+import { useParams } from "next/navigation";
+import { BOT_API_URL } from "@/consts";
 import { ChannelSelector } from "./ChannelSelector";
 
 type Props = {
@@ -7,14 +9,18 @@ type Props = {
 };
 
 export function SendMessageForm({ jwt }: Props) {
+  const { guildId } = useParams<{ guildId: string }>();
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const data = Object.fromEntries(formData.entries());
 
-    const res = await fetch("/api/admin/send", {
+    const res = await fetch(`${BOT_API_URL}/${guildId}/channel/send`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${jwt}`,
+      },
       body: JSON.stringify(data),
     });
     if (res.ok) return alert("Message sent");
