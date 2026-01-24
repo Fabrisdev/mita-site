@@ -1,6 +1,7 @@
 import { LoggedInAsPopup } from "@/auth/components/LoggedInAsPopup";
 import { BotStatus } from "./BotStatus";
 import { Header } from "./Header";
+import { SectionWrapper } from "./SectionWrapper";
 import { SendMessageForm } from "./SendMessageForm";
 import { Sidebar } from "./Sidebar";
 
@@ -25,9 +26,9 @@ export function AdminPanel({ username, id, avatar, jwt }: Props) {
       </Header>
       <div className="flex flex-1">
         <Sidebar />
-        <div className="m-5 flex-1">
+        <SectionWrapper>
           <SendMessageForm jwt={jwt} />
-        </div>
+        </SectionWrapper>
       </div>
     </div>
   );
