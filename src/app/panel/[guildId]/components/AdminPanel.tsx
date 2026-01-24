@@ -13,7 +13,7 @@ type Props = {
 
 export function AdminPanel({ username, id, avatar, jwt }: Props) {
   return (
-    <div className="bg-purple-950 min-h-svh">
+    <div className="bg-purple-950 min-h-svh flex flex-col">
       <Header>
         <BotStatus />
         <LoggedInAsPopup
@@ -23,9 +23,9 @@ export function AdminPanel({ username, id, avatar, jwt }: Props) {
           disableDefaultPositioning
         />
       </Header>
-      <div className="flex">
+      <div className="flex flex-1">
         <Sidebar />
-        <div className="m-5">
+        <div className="m-5 flex-1">
           <SendMessageForm jwt={jwt} />
         </div>
       </div>
