@@ -35,7 +35,7 @@ export function SendMessageForm({ jwt }: Props) {
       className="bg-purple-600 flex flex-col p-4 border-2 rounded-md gap-3"
     >
       <p>Send a message to a channel</p>
-      <MessageInput jwt={jwt} />
+      <MessageInput />
       <ChannelSelector jwt={jwt} />
       <input
         type="submit"

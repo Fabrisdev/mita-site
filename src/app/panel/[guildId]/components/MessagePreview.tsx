@@ -1,8 +1,7 @@
 type Props = {
-  jwt: string;
   message: string;
 };
 
-export function MessagePreview({ jwt, message }: Props) {
+export function MessagePreview({ message }: Props) {
   return <p>{message}</p>;
 }
