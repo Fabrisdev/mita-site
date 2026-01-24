@@ -1,8 +1,7 @@
 import { LoggedInAsPopup } from "@/auth/components/LoggedInAsPopup";
 import { BotStatus } from "./BotStatus";
 import { Header } from "./Header";
-import { SectionWrapper } from "./SectionWrapper";
-import { SendMessageForm } from "./SendMessageForm";
+import { SectionManager } from "./SectionManager";
 import { Sidebar } from "./Sidebar";
 
 type Props = {
@@ -26,9 +25,7 @@ export function AdminPanel({ username, id, avatar, jwt }: Props) {
       </Header>
       <div className="flex flex-1">
         <Sidebar />
-        <SectionWrapper>
-          <SendMessageForm jwt={jwt} />
-        </SectionWrapper>
+        <SectionManager jwt={jwt} />
       </div>
     </div>
   );
