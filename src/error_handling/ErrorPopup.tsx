@@ -7,6 +7,9 @@ const messages = {
     "Your account was successfully verified, but it is not included in the list of allowed users. You have been automatically signed out and will not be able to access this service.",
   invalid_code:
     "The code you entered is invalid or has expired. This can happen if the login process takes too long. Please try again.",
+  message_send_success: "Message sent successfully.",
+  message_send_failure:
+    "An error has ocurred whilst sending the message. Please try again later.",
 } as const;
 type ErrorCode = keyof typeof messages;
 

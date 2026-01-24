@@ -2,7 +2,7 @@ import { useState } from "react";
 import { MessagePreview } from "./MessagePreview";
 
 export function MessageInput() {
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState("Hello everyone!");
   return (
     <>
       <input
