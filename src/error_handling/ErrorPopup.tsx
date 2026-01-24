@@ -1,5 +1,6 @@
 type Props = {
   error: string | undefined;
+  onAccept?: () => void;
 };
 
 const messages = {
@@ -13,7 +14,7 @@ const messages = {
 } as const;
 type ErrorCode = keyof typeof messages;
 
-export function ErrorPopup({ error }: Props) {
+export function ErrorPopup({ error, onAccept }: Props) {
   if (!error) return null;
   return (
     <dialog
@@ -31,6 +32,7 @@ export function ErrorPopup({ error }: Props) {
       <form method="dialog" className="text-right">
         <button
           type="submit"
+          onClick={onAccept}
           className="px-4 py-2 rounded bg-purple-800 cursor-pointer font-bold hover:bg-purple-900 transition"
         >
           Understood

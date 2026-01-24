@@ -50,7 +50,7 @@ export function SendMessageForm({ jwt }: Props) {
           className="bg-pink-400 hover:bg-pink-500 border-2 rounded-md p-1 font-bold cursor-pointer transition"
         />
       </form>
-      <ErrorPopup error={status} />
+      <ErrorPopup error={status} onAccept={() => setStatus(undefined)} />
     </>
   );
 }
