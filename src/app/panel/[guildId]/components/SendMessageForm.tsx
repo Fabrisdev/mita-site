@@ -3,6 +3,7 @@
 import { useParams } from "next/navigation";
 import { BOT_API_URL } from "@/consts";
 import { ChannelSelector } from "./ChannelSelector";
+import { MessageInput } from "./MessageInput";
 
 type Props = {
   jwt: string;
@@ -34,12 +35,7 @@ export function SendMessageForm({ jwt }: Props) {
       className="bg-purple-600 flex flex-col p-4 border-2 rounded-md gap-3"
     >
       <p>Send a message to a channel</p>
-      <input
-        type="text"
-        name="message"
-        placeholder="Message"
-        className="border-2 p-1 rounded-md"
-      />
+      <MessageInput jwt={jwt} />
       <ChannelSelector jwt={jwt} />
       <input
         type="submit"
