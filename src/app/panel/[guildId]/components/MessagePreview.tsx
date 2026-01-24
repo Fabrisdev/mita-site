@@ -17,7 +17,7 @@ export function MessagePreview({ message }: Props) {
       <div className="flex flex-col">
         <div className="flex gap-2">
           <p>Mita</p>
-          <small className="bg-[#5865f2] font-bold rounded-md flex justify-center items-center pl-1 pr-1">
+          <small className="bg-[#5865f2] font-bold rounded-md flex justify-center items-center pl-1 pr-1 h-min">
             APP
           </small>
         </div>
