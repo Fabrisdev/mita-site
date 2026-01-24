@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-type Section =
+export type Section =
   | "Moderation"
   | "Channels"
   | "Welcome & greeting"
