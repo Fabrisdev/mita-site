@@ -1,6 +1,7 @@
 "use client";
 
-import { useSectionStore } from "@/stores/section";
+import type { JSX } from "react";
+import { type Section, useSectionStore } from "@/stores/section";
 import { ChannelsSection } from "../sections/ChannelsSection";
 import { CustomCommandsSection } from "../sections/CustomCommandsSection";
 import { ModerationSection } from "../sections/ModerationSection";
@@ -12,21 +13,16 @@ type Props = {
   jwt: string;
 };
 
+const sections: Record<Section, (jwt: string) => JSX.Element> = {
+  Channels: (jwt) => <ChannelsSection jwt={jwt} />,
+  Moderation: () => <ModerationSection />,
+  "Custom commands": () => <CustomCommandsSection />,
+  "Ticket log": () => <TicketLogSection />,
+  "Welcome & greeting": () => <WelcomeSection />,
+};
+
 export function SectionManager({ jwt }: Props) {
   const selected = useSectionStore((state) => state.section);
-  return (
-    <SectionWrapper>
-      {selected === "Channels" ? (
-        <ChannelsSection jwt={jwt} />
-      ) : selected === "Moderation" ? (
-        <ModerationSection />
-      ) : selected === "Custom commands" ? (
-        <CustomCommandsSection />
-      ) : selected === "Ticket log" ? (
-        <TicketLogSection />
-      ) : (
-        <WelcomeSection />
-      )}
-    </SectionWrapper>
-  );
+  const section = sections[selected];
+  return <SectionWrapper>{section(jwt)}</SectionWrapper>;
 }
