@@ -24,7 +24,7 @@ export function ChannelSelector({ jwt }: Props) {
   }, []);
 
   return (
-    <select name="channelId">
+    <select name="channelId" className="p-2 border-2 rounded-md">
       {channels.map((channel) => (
         <option key={channel.id} value={channel.id}>
           #{channel.name}
