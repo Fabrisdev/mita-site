@@ -1,3 +1,4 @@
+import { DISCORD_CLIENT_ID } from "@/consts";
 import { SignJWT } from "jose";
 import { cookies } from "next/headers";
 
@@ -37,7 +38,7 @@ export async function GET(req: Request) {
 
 async function validateCode(code: string) {
   const data = new URLSearchParams();
-  data.append("client_id", process.env.DISCORD_CLIENT_ID ?? "");
+  data.append("client_id", DISCORD_CLIENT_ID);
   data.append("client_secret", process.env.DISCORD_CLIENT_SECRET ?? "");
   data.append("grant_type", "authorization_code");
   data.append("code", code);
