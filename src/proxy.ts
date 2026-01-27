@@ -1,7 +1,7 @@
 import { jwtVerify } from "jose";
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
-import { BOT_API_URL } from "./consts";
+import { BotService } from "./bot-service";
 
 const secret = new TextEncoder().encode(process.env.JWT_SECRET);
 
@@ -14,10 +14,7 @@ export async function proxy(req: NextRequest) {
 
   try {
     await jwtVerify(session.value, secret);
-    const online = await fetch(`${BOT_API_URL}/status/ok`)
-      .then((res) => res.ok)
-      .catch(() => false);
-    console.log(online);
+    const online = await BotService.isOnline();
     if (!online)
       return Response.redirect(new URL("/?error=service_down", req.url));
     return NextResponse.next();
