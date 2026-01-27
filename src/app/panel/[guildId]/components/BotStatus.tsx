@@ -1,21 +1,11 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
-import { BotService } from "@/bot-service";
+import { useBotStatus } from "../hooks/useBotStatus";
 
 export function BotStatus() {
-  const {
-    data: isOnline,
-    isFetching,
-    dataUpdatedAt,
-    isFetched,
-  } = useQuery({
-    queryKey: ["bot-status"],
-    queryFn: BotService.isOnline,
-    refetchInterval: 100_000,
-  });
+  const { isFetched, isFetching, isOnline, updatedAt } = useBotStatus();
 
-  const formattedTime = new Date(dataUpdatedAt)?.toLocaleTimeString("en-US", {
+  const formattedTime = new Date(updatedAt)?.toLocaleTimeString("en-US", {
     hour12: true,
     hour: "numeric",
     minute: "2-digit",
