@@ -11,7 +11,9 @@ export default async function ChooseServerPage() {
     headers: {
       Authorization: `Bearer ${session.value}`,
     },
-  }).then((res) => res.json())) as { name: string; id: string; icon: string }[];
+  })
+    .then((res) => res.json())
+    .catch(() => [])) as { name: string; id: string; icon: string }[];
   return (
     <div>
       <h1 className="text-3xl text-center font-bold">Choose a server</h1>
