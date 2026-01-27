@@ -18,7 +18,7 @@ const queryClient = new QueryClient();
 
 export function AdminPanel({ username, id, avatar, jwt }: Props) {
   return (
-    <div className="bg-purple-950 min-h-svh flex flex-col">
+    <div className="bg-[#1a1a1e] min-h-svh flex flex-col">
       <QueryClientProvider client={queryClient}>
         <Header>
           <BotStatus />

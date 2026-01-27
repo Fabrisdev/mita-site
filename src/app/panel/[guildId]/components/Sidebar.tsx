@@ -4,7 +4,7 @@ import { SectionOption } from "./SectionOption";
 
 export function Sidebar() {
   return (
-    <ul className="bg-purple-600 w-80 border-r-2 flex flex-col gap-2 p-2">
+    <ul className="bg-[#121214] w-80 flex flex-col gap-2 p-2">
       <SectionOption name="Moderation" />
       <SectionOption name="Channels" />
       <SectionOption name="Welcome & greeting" />
