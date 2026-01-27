@@ -39,15 +39,15 @@ export function SendMessageForm({ jwt }: Props) {
       <form
         onSubmit={(e) => handleSubmit(e)}
         method="POST"
-        className="bg-purple-600 flex flex-col p-4 border-2 rounded-md gap-3"
+        className="bg-[#121214] flex flex-col p-4 border border-[#28282c] rounded-md gap-3"
       >
-        <p className="text-xl">Send a message to a channel</p>
+        <p>Send a message to a channel</p>
         <MessageInput />
         <ChannelSelector jwt={jwt} />
         <input
           type="submit"
           value="Send"
-          className="bg-pink-400 hover:bg-pink-500 border-2 rounded-md p-1 font-bold cursor-pointer transition"
+          className="bg-[#242428] hover:bg-[#3b3b41]  rounded-md p-2 font-bold cursor-pointer border border-[#28282c] transition"
         />
       </form>
       <ErrorPopup error={status} onAccept={() => setStatus(undefined)} />

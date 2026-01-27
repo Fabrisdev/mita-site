@@ -11,7 +11,7 @@ export function MessageInput() {
         placeholder="Message"
         value={message}
         onChange={(e) => setMessage(e.target.value)}
-        className="border-2 p-1 rounded-md"
+        className="border border-[#28282c] p-2 rounded-md"
       />
       <MessagePreview message={message} />
     </>
