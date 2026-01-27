@@ -1,5 +1,6 @@
 "use client";
 
+import { BotStatus } from "./BotStatus";
 import { SectionOption } from "./SectionOption";
 
 export function Sidebar() {
@@ -10,6 +11,8 @@ export function Sidebar() {
       <SectionOption name="Welcome & greeting" />
       <SectionOption name="Ticket log" />
       <SectionOption name="Custom commands" />
+      <div className="flex-1"></div>
+      <BotStatus />
     </ul>
   );
 }

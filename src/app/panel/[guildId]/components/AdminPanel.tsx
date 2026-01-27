@@ -2,7 +2,6 @@
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useSectionStore } from "@/stores/section";
-import { BotStatus } from "./BotStatus";
 import { Header } from "./Header";
 import { SectionManager } from "./SectionManager";
 import { Sidebar } from "./Sidebar";
@@ -19,7 +18,6 @@ export function AdminPanel({ jwt }: Props) {
     <div className="bg-[#1a1a1e] min-h-svh flex flex-col">
       <QueryClientProvider client={queryClient}>
         <Header>
-          <BotStatus />
           <p>{section}</p>
         </Header>
         <div className="flex flex-1">
