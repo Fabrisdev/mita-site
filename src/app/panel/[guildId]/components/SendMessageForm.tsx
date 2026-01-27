@@ -58,7 +58,11 @@ export function SendMessageForm({ jwt }: Props) {
           className="bg-[#242428] hover:bg-[#3b3b41]  rounded-md p-2 font-bold cursor-pointer border border-[#28282c] transition"
         />
       </form>
-      <ErrorPopup error={status} onAccept={() => setStatus(undefined)} />
+      <ErrorPopup
+        error={status}
+        onAccept={() => setStatus(undefined)}
+        style="discord"
+      />
     </>
   );
 }
