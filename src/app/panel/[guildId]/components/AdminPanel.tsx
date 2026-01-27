@@ -17,7 +17,7 @@ export function AdminPanel({ jwt }: Props) {
       <QueryClientProvider client={queryClient}>
         <Header />
         <div className="flex flex-1">
-          <Sidebar />
+          <Sidebar jwt={jwt} />
           <SectionManager jwt={jwt} />
         </div>
       </QueryClientProvider>
