@@ -8,20 +8,19 @@ export function BotStatus() {
     data: isOnline,
     isFetching,
     dataUpdatedAt,
+    isFetched,
   } = useQuery({
     queryKey: ["bot-status"],
     queryFn: BotService.isOnline,
     refetchInterval: 100_000,
   });
 
-  const formattedTime = dataUpdatedAt
-    ? new Date(dataUpdatedAt)?.toLocaleTimeString("en-US", {
-        hour12: true,
-        hour: "numeric",
-        minute: "2-digit",
-        second: "2-digit",
-      })
-    : null;
+  const formattedTime = new Date(dataUpdatedAt)?.toLocaleTimeString("en-US", {
+    hour12: true,
+    hour: "numeric",
+    minute: "2-digit",
+    second: "2-digit",
+  });
   const message = isFetching ? "Checking..." : isOnline ? "ONLINE" : "OFFLINE";
 
   return (
@@ -31,7 +30,7 @@ export function BotStatus() {
       >
         {message}
       </span>
-      {formattedTime && <i>(last checked at: {formattedTime})</i>}
+      {isFetched && <i>(last checked at: {formattedTime})</i>}
     </div>
   );
 }
