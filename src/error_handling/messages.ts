@@ -6,6 +6,8 @@ export const messages = {
   message_send_success: "Message sent successfully.",
   message_send_failure:
     "An error has ocurred whilst sending the message. Please try again later.",
+  service_down:
+    "This service is currently unavailable. We apologize for the inconvenience. Please try again later.",
 } as const;
 
 export type ErrorCode = keyof typeof messages;
