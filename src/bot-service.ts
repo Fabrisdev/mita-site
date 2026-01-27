@@ -8,14 +8,10 @@ export namespace BotService {
       .catch(() => false);
   }
 
-  export async function servers({
-    session,
-  }: {
-    session: RequestCookie | string;
-  }) {
+  export async function servers({ session }: { session: Session }) {
     return (await fetch(`${BOT_API_URL}/guild`, {
       headers: {
-        Authorization: `Bearer ${typeof session === "string" ? session : session.value}`,
+        Authorization: `Bearer ${getToken(session)}`,
       },
     }).then((res) => res.json())) as Guild[];
   }
@@ -25,7 +21,7 @@ export namespace BotService {
     session,
   }: {
     guildId: string;
-    session: RequestCookie | string;
+    session: Session;
   }) {
     const guilds = await BotService.servers({ session });
     return guilds.find((guild) => guild.id === guildId);
@@ -40,13 +36,13 @@ export namespace BotService {
     guildId: string;
     message: string;
     channelId: string;
-    session: RequestCookie | string;
+    session: Session;
   }) {
     return await fetch(`${BOT_API_URL}/${guildId}/channel/send`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${typeof session === "string" ? session : session.value}`,
+        Authorization: `Bearer ${getToken(session)}`,
       },
       body: JSON.stringify({ message, channelId }),
     });
@@ -63,3 +59,9 @@ export type SendBody = {
   message: string;
   channelId: string;
 };
+
+type Session = RequestCookie | string;
+
+function getToken(session: Session) {
+  return typeof session === "string" ? session : session.value;
+}
