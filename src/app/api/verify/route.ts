@@ -1,6 +1,6 @@
-import { DISCORD_CLIENT_ID } from "@/consts";
 import { SignJWT } from "jose";
 import { cookies } from "next/headers";
+import { DISCORD_CLIENT_ID, DISCORD_REDIRECT_URI } from "@/consts";
 
 const ALLOWED_USER_IDS = [
   "317105612100075520",
@@ -18,6 +18,7 @@ export async function GET(req: Request) {
     return new Response("No code provided", { status: 400 });
 
   const validatedResponse = await validateCode(code);
+  console.log(validatedResponse);
   if (!validatedResponse.ok)
     return Response.redirect(new URL("/?error=invalid_code", req.url));
 
@@ -42,7 +43,7 @@ async function validateCode(code: string) {
   data.append("client_secret", process.env.DISCORD_CLIENT_SECRET ?? "");
   data.append("grant_type", "authorization_code");
   data.append("code", code);
-  data.append("redirect_uri", process.env.DISCORD_REDIRECT_URI ?? "");
+  data.append("redirect_uri", DISCORD_REDIRECT_URI);
   data.append("scope", "identify");
 
   return await fetch("https://discord.com/api/oauth2/token", {
