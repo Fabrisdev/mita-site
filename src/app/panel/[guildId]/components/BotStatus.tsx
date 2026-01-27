@@ -7,9 +7,9 @@ export function BotStatus() {
   const { isFetched, isFetching, isOnline, updatedAt } = useBotStatus();
 
   const formattedTime = formatTime(updatedAt);
-  const message = isFetching ? "Checking..." : isOnline ? "ONLINE" : "OFFLINE";
+  const message = isFetching ? "Checking..." : isOnline ? "Online" : "Offline";
   const lastCheckedAtMessage = isFetched
-    ? `Last checked at: ${formattedTime}`
+    ? `API status: ${message}. Last checked at: ${formattedTime}`
     : "Haven't checked yet";
 
   return (
