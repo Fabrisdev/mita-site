@@ -5,12 +5,7 @@ import { useBotStatus } from "../hooks/useBotStatus";
 export function BotStatus() {
   const { isFetched, isFetching, isOnline, updatedAt } = useBotStatus();
 
-  const formattedTime = new Date(updatedAt)?.toLocaleTimeString("en-US", {
-    hour12: true,
-    hour: "numeric",
-    minute: "2-digit",
-    second: "2-digit",
-  });
+  const formattedTime = formatTime(updatedAt);
   const message = isFetching ? "Checking..." : isOnline ? "ONLINE" : "OFFLINE";
 
   return (
@@ -23,4 +18,13 @@ export function BotStatus() {
       {isFetched && <i>(last checked at: {formattedTime})</i>}
     </div>
   );
+}
+
+function formatTime(time: number) {
+  return new Date(time).toLocaleTimeString("en-US", {
+    hour12: true,
+    hour: "numeric",
+    minute: "2-digit",
+    second: "2-digit",
+  });
 }
