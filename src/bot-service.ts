@@ -19,4 +19,15 @@ export namespace BotService {
       icon: string;
     }[];
   }
+
+  export async function findGuild({
+    guildId,
+    session,
+  }: {
+    guildId: string;
+    session: RequestCookie;
+  }) {
+    const guilds = await BotService.servers({ session });
+    return guilds.find((guild) => guild.id === guildId);
+  }
 }
