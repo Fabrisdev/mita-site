@@ -17,11 +17,7 @@ export namespace BotService {
       headers: {
         Authorization: `Bearer ${typeof session === "string" ? session : session.value}`,
       },
-    }).then((res) => res.json())) as {
-      name: string;
-      id: string;
-      icon: string;
-    }[];
+    }).then((res) => res.json())) as Guild[];
   }
 
   export async function findGuild({
@@ -35,3 +31,9 @@ export namespace BotService {
     return guilds.find((guild) => guild.id === guildId);
   }
 }
+
+export type Guild = {
+  name: string;
+  id: string;
+  icon: string;
+};
