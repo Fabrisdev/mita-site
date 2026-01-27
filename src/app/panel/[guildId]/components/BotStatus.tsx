@@ -17,7 +17,9 @@ export function BotStatus() {
       <div
         className={`bg-white h-[0%] opacity-0 w-2 rounded-xl group-hover:opacity-100 group-hover:h-[50%] transition-all duration-150 absolute right-full mr-1`}
       ></div>
-      <div className="cursor-pointer w-full rounded-xl bg-[#1a1a1e] border border-[#28282c] hover:bg-[#242428] p-2 peer ml-1">
+      <div
+        className={`cursor-pointer w-full rounded-xl bg-[#1a1a1e] border border-[#28282c] hover:bg-[#242428] p-2 peer ml-1 ${isOnline && isFetched ? "bg-blue-500 hover:bg-blue-600" : "bg-red-500 hover:bg-red-600"}`}
+      >
         <Image
           src={`/status.svg`}
           width={32}

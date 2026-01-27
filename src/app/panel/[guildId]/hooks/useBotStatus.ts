@@ -5,7 +5,7 @@ export function useBotStatus() {
   const { data, isFetching, isFetched, dataUpdatedAt } = useQuery({
     queryKey: ["bot-status"],
     queryFn: BotService.isOnline,
-    refetchInterval: 100_000,
+    refetchInterval: 100_0,
   });
   return { isOnline: data, isFetching, isFetched, updatedAt: dataUpdatedAt };
 }
