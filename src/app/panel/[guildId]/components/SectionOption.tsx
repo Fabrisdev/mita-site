@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { type Section, useSectionStore } from "@/stores/section";
 
 type Props = {
@@ -12,9 +13,9 @@ export function SectionOption({ name }: Props) {
       <button
         type="button"
         onClick={() => setSection(name)}
-        className={`cursor-pointer w-full rounded-md bg-purple-500 p-2 border-2 hover:bg-purple-600  ${isSelected && "bg-red-400 hover:bg-red-500 font-bold"}`}
+        className={`cursor-pointer w-full rounded-md`}
       >
-        {name}
+        <Image src={`/${name}.svg`} width={32} height={32} alt={name} />
       </button>
     </li>
   );
