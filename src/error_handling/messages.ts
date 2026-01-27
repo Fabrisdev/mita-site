@@ -10,6 +10,7 @@ export const messages = {
     "This service is currently unavailable. We apologize for the inconvenience. Please try again later.",
   non_existent_guild:
     "The requested guild either does not exist or you do not have permission to access it.",
+  message_cannot_be_empty: "You can’t send an empty message.",
 } as const;
 
 export type ErrorCode = keyof typeof messages;

@@ -9,7 +9,7 @@ export function MessageInput() {
       <input
         type="text"
         name="message"
-        placeholder="Message"
+        placeholder="Message to send"
         value={message}
         onChange={(e) => setMessage(e.target.value)}
         className={`border border-[#28282c] p-2 rounded-md outline-none focus:outline-none focus:ring-0 ${isEmpty ? "border-red-500" : "border-[#28282c]"}`}

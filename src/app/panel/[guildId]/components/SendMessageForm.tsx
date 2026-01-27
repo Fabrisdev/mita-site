@@ -14,14 +14,22 @@ type Props = {
 export function SendMessageForm({ jwt }: Props) {
   const { guildId } = useParams<{ guildId: string }>();
   const [status, setStatus] = useState<
-    "message_send_success" | "message_send_failure" | undefined
+    | "message_send_success"
+    | "message_send_failure"
+    | "message_cannot_be_empty"
+    | undefined
   >(undefined);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
-    const data = Object.fromEntries(formData.entries());
-
+    const data = Object.fromEntries(formData.entries()) as {
+      message: string;
+      channelId: string;
+    };
+    if (data.message.trim().length === 0) {
+      return setStatus("message_cannot_be_empty");
+    }
     const res = await fetch(`${BOT_API_URL}/${guildId}/channel/send`, {
       method: "POST",
       headers: {
