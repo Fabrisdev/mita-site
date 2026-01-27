@@ -2,7 +2,7 @@
 
 import { useParams } from "next/navigation";
 import { useState } from "react";
-import { BOT_API_URL } from "@/consts";
+import { BotService, type SendBody } from "@/bot-service";
 import { ErrorPopup } from "@/error_handling/ErrorPopup";
 import { ChannelSelector } from "./ChannelSelector";
 import { MessageInput } from "./MessageInput";
@@ -23,21 +23,11 @@ export function SendMessageForm({ jwt }: Props) {
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
-    const data = Object.fromEntries(formData.entries()) as {
-      message: string;
-      channelId: string;
-    };
-    if (data.message.trim().length === 0) {
+    const data = Object.fromEntries(formData.entries()) as SendBody;
+    if (data.message.trim().length === 0)
       return setStatus("message_cannot_be_empty");
-    }
-    const res = await fetch(`${BOT_API_URL}/${guildId}/channel/send`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${jwt}`,
-      },
-      body: JSON.stringify(data),
-    });
+
+    const res = await BotService.send({ guildId, session: jwt, ...data });
     if (res.ok) return setStatus("message_send_success");
     setStatus("message_send_failure");
   }
