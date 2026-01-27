@@ -8,10 +8,14 @@ export namespace BotService {
       .catch(() => false);
   }
 
-  export async function servers({ session }: { session: RequestCookie }) {
+  export async function servers({
+    session,
+  }: {
+    session: RequestCookie | string;
+  }) {
     return (await fetch(`${BOT_API_URL}/guild`, {
       headers: {
-        Authorization: `Bearer ${session.value}`,
+        Authorization: `Bearer ${typeof session === "string" ? session : session.value}`,
       },
     }).then((res) => res.json())) as {
       name: string;
@@ -25,7 +29,7 @@ export namespace BotService {
     session,
   }: {
     guildId: string;
-    session: RequestCookie;
+    session: RequestCookie | string;
   }) {
     const guilds = await BotService.servers({ session });
     return guilds.find((guild) => guild.id === guildId);
