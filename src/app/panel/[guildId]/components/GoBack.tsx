@@ -34,7 +34,7 @@ export function GoBack({ jwt }: Props) {
       >
         <div className="h-8 w-8"></div>
       </button>
-      <p className="opacity-0 text-[#efeff1] font-bold group-hover:opacity-100 bg-[#242429] absolute left-full p-2 rounded-md ml-4 whitespace-nowrap transition border border-[#2e2e33] before:content-[''] before:absolute before:-left-1.5 before:top-1/2 before:-translate-y-1/2 before:border-y-6 before:border-y-transparent before:border-r-6 before:border-r-[#242429]">
+      <p className="pointer-events-none opacity-0 text-[#efeff1] font-bold group-hover:opacity-100 bg-[#242429] absolute left-full p-2 rounded-md ml-4 whitespace-nowrap transition border border-[#2e2e33] before:content-[''] before:absolute before:-left-1.5 before:top-1/2 before:-translate-y-1/2 before:border-y-6 before:border-y-transparent before:border-r-6 before:border-r-[#242429]">
         You’re in {guild?.name}. Click to return.
       </p>
     </li>
