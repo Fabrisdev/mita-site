@@ -1,14 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { BOT_API_URL } from "@/consts";
+import { BotService } from "@/bot-service";
 
 export function BotStatus() {
   const [isOnline, setIsOnline] = useState(false);
   const [lastCheckedAt, setLastCheckedAt] = useState<Date | null>(null);
 
   useEffect(() => {
-    fetch(`${BOT_API_URL}/status/ok`)
+    BotService.isOnline()
       .then(() => setIsOnline(true))
       .catch(() => setIsOnline(false))
       .finally(() => setLastCheckedAt(new Date()));
