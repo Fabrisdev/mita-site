@@ -11,7 +11,7 @@ export function SectionOption({ name }: Props) {
   return (
     <li className="flex gap-2 justify-center items-center group">
       <div
-        className={`bg-white h-[0%] w-2 rounded-xl group-hover:h-[50%] transition-all duration-150 ${isSelected && "h-full group-hover:h-full"}`}
+        className={`bg-white h-[0%] opacity-0 w-2 rounded-xl group-hover:opacity-100 group-hover:h-[50%] transition-all duration-150 ${isSelected && "h-full group-hover:h-full opacity-100"}`}
       ></div>
       <button
         type="button"
