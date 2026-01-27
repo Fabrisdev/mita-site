@@ -16,7 +16,7 @@ export function SectionOption({ name }: Props) {
       <button
         type="button"
         onClick={() => setSection(name)}
-        className="cursor-pointer w-full rounded-xl bg-gray-800 border border-gray-700 hover:bg-gray-900 p-2 peer"
+        className="cursor-pointer w-full rounded-xl bg-[#1a1a1e] border border-[#28282c] hover:bg-[#242428] p-2 peer"
       >
         <Image src={`/${name}.svg`} width={32} height={32} alt={name} />
       </button>
