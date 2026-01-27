@@ -1,17 +1,13 @@
 import { cookies } from "next/headers";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { BOT_API_URL } from "@/consts";
+import { BotService } from "@/bot-service";
 
 export default async function ChooseServerPage() {
   const cookieStore = await cookies();
   const session = cookieStore.get("session");
   if (!session) return redirect("/");
-  const guilds = (await fetch(`${BOT_API_URL}/guild`, {
-    headers: {
-      Authorization: `Bearer ${session.value}`,
-    },
-  }).then((res) => res.json())) as { name: string; id: string; icon: string }[];
+  const guilds = await BotService.servers({ session });
   return (
     <div>
       <h1 className="text-3xl text-center font-bold">Choose a server</h1>
