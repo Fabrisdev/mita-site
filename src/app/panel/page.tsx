@@ -17,10 +17,10 @@ export default async function ChooseServerPage() {
   const session = cookieStore.get("session");
   if (!session) return redirect("/");
   const _guilds = await BotService.servers({ session });
-  const guilds = Array.from(
-    { length: 10 },
-    (_, i) => _guilds[i % _guilds.length],
-  );
+  const guilds = Array.from({ length: 10 }, (_, i) => ({
+    ..._guilds[i % _guilds.length],
+    id: crypto.randomUUID(),
+  }));
   return (
     <div className="p-10 flex flex-col gap-5 bg-[#121214] min-h-svh">
       <h1 className="text-3xl text-center font-bold">Choose a server</h1>
@@ -59,9 +59,9 @@ export default async function ChooseServerPage() {
             </ol>
             <Link
               href={`/panel/${guild.id}`}
-              className="bg-red-500 border border-[#2e2e33] w-full text-center rounded-md p-2 font-bold hover:bg-[#242428] transition"
+              className="bg-[hsl(var(--h)_60%_10%)] border border-[#2e2e33] w-full text-center rounded-md p-2 font-bold hover:bg-[hsl(var(--h)_100%_12%)] transition"
               style={{
-                backgroundColor: `hsl(${(i * 40) % 360}, 60%, 10%)`,
+                "--h": (i * 40) % 360,
               }}
             >
               {messages[i % messages.length]}
