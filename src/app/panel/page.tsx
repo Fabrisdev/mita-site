@@ -32,7 +32,7 @@ export default async function ChooseServerPage() {
         {guilds.map((guild, i) => (
           <li
             key={guild.id}
-            className="flex justify-center items-center gap-5 flex-col min-w-60 p-4 rounded-md border border-[#2e2e33] shadow-lg shadow-black"
+            className="flex justify-center items-center gap-5 flex-col min-w-[90%] p-4 rounded-md border border-[#2e2e33] shadow-lg shadow-black"
             style={{
               backgroundColor: `hsl(${(i * 40) % 360}, 20%, 12%)`,
             }}
