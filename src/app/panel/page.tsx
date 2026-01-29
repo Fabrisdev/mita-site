@@ -28,7 +28,10 @@ export default async function ChooseServerPage() {
         {guilds.map((guild, i) => (
           <li
             key={guild.id}
-            className="flex justify-center items-center gap-5 flex-col bg-[#1a1a1e] min-w-60 p-4 rounded-md border border-[#2e2e33]"
+            className="flex justify-center items-center gap-5 flex-col min-w-60 p-4 rounded-md border border-[#2e2e33]"
+            style={{
+              backgroundColor: `hsl(${(i * 40) % 360}, 15%, 12%)`,
+            }}
           >
             <p className="font-bold">{guild.name}</p>
             <div className="w-full rounded-md flex justify-center items-center p-2 border border-[#2e2e33] bg-cover relative overflow-hidden">
@@ -46,6 +49,14 @@ export default async function ChooseServerPage() {
                 className="rounded-full z-20"
               />
             </div>
+            <ol className="w-full list-disc pl-4">
+              <li>
+                User count: <strong>10.2k</strong>
+              </li>
+              <li>
+                Your role: <strong>Administrator</strong>
+              </li>
+            </ol>
             <Link
               href={`/panel/${guild.id}`}
               className="bg-[#121214] border border-[#2e2e33] w-full text-center rounded-md p-2 font-bold hover:bg-[#242428] transition"
