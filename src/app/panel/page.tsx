@@ -21,14 +21,22 @@ export default async function ChooseServerPage() {
             key={guild.id}
             className="flex justify-center items-center gap-5 flex-col bg-[#1a1a1e] min-w-60 p-4 rounded-md border border-[#2e2e33]"
           >
-            <img
-              src={guild.icon}
-              alt={`${guild.name}'s server`}
-              width={64}
-              height={64}
-              className="rounded-full"
-            />
-            <p>{guild.name}</p>
+            <p className="font-bold">{guild.name}</p>
+            <div className="w-full rounded-md flex justify-center items-center p-2 border border-[#2e2e33] bg-cover relative overflow-hidden">
+              <div
+                className="absolute w-full h-full bg-cover z-10 rounded-md blur-sm"
+                style={{
+                  backgroundImage: `url(${guild.icon})`,
+                }}
+              ></div>
+              <img
+                src={guild.icon}
+                alt={`${guild.name}'s server`}
+                width={96}
+                height={96}
+                className="rounded-full z-20"
+              />
+            </div>
             <Link
               href={`/panel/${guild.id}`}
               className="bg-[#121214] border border-[#2e2e33] w-full text-center rounded-md p-2 font-bold hover:bg-[#242428] transition"
