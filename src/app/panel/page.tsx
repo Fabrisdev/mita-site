@@ -1,6 +1,7 @@
 import { cookies } from "next/headers";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import type { CSSProperties } from "react";
 import { BotService } from "@/bot-service";
 
 const messages = [
@@ -60,9 +61,11 @@ export default async function ChooseServerPage() {
             <Link
               href={`/panel/${guild.id}`}
               className="bg-[hsl(var(--h)_60%_10%)] border border-[#2e2e33] w-full text-center rounded-md p-2 font-bold hover:bg-[hsl(var(--h)_100%_12%)] transition"
-              style={{
-                "--h": (i * 40) % 360,
-              }}
+              style={
+                {
+                  "--h": (i * 40) % 360,
+                } as CSSProperties & { "--h": number }
+              }
             >
               {messages[i % messages.length]}
             </Link>
