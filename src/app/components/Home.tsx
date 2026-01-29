@@ -4,6 +4,7 @@ import { LoggedInAsPopup } from "../../auth/components/LoggedInAsPopup";
 import { LogInButton } from "../../auth/components/LogInButton";
 import { LogoutButton } from "../../auth/components/LogoutButton";
 import { MitaBackground } from "../../backgrounds/MitaBackground";
+import { AddBotButton } from "./AddBotButton";
 import { HomeContainer } from "./HomeContainer";
 import { MainMenu } from "./MainMenu";
 
@@ -40,6 +41,7 @@ export function Home({ loggedIn, avatar, id, username, error }: Props) {
       <MainMenu>
         <MitaBotLogo />
         <LogInButton loggedIn={loggedIn} />
+        <AddBotButton />
         <LogoutButton loggedIn={loggedIn} />
       </MainMenu>
     </HomeContainer>
