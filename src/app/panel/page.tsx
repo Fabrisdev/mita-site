@@ -3,6 +3,15 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { BotService } from "@/bot-service";
 
+const messages = [
+  "Go!",
+  "Jump in!",
+  "Dive in!",
+  "Here we go!",
+  "Launch!",
+  "Boot up!",
+] as const;
+
 export default async function ChooseServerPage() {
   const cookieStore = await cookies();
   const session = cookieStore.get("session");
@@ -16,7 +25,7 @@ export default async function ChooseServerPage() {
     <div className="p-10 flex flex-col gap-5 bg-[#121214] min-h-svh">
       <h1 className="text-3xl text-center font-bold">Choose a server</h1>
       <ul className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] justify-items-center gap-6">
-        {guilds.map((guild) => (
+        {guilds.map((guild, i) => (
           <li
             key={guild.id}
             className="flex justify-center items-center gap-5 flex-col bg-[#1a1a1e] min-w-60 p-4 rounded-md border border-[#2e2e33]"
@@ -41,7 +50,7 @@ export default async function ChooseServerPage() {
               href={`/panel/${guild.id}`}
               className="bg-[#121214] border border-[#2e2e33] w-full text-center rounded-md p-2 font-bold hover:bg-[#242428] transition"
             >
-              Go!
+              {messages[i % messages.length]}
             </Link>
           </li>
         ))}
