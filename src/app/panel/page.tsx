@@ -7,15 +7,19 @@ export default async function ChooseServerPage() {
   const cookieStore = await cookies();
   const session = cookieStore.get("session");
   if (!session) return redirect("/");
-  const guilds = await BotService.servers({ session });
+  const _guilds = await BotService.servers({ session });
+  const guilds = Array.from(
+    { length: 10 },
+    (_, i) => _guilds[i % _guilds.length],
+  );
   return (
-    <div>
+    <div className="p-10 flex flex-col gap-5">
       <h1 className="text-3xl text-center font-bold">Choose a server</h1>
-      <ul>
+      <ul className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] justify-items-center gap-6">
         {guilds.map((guild) => (
           <li
             key={guild.id}
-            className="flex justify-center items-center gap-5 flex-col bg-gray-600 max-w-60 p-4 rounded-md"
+            className="flex justify-center items-center gap-5 flex-col bg-gray-600 min-w-60 p-4 rounded-md"
           >
             <img
               src={guild.icon}
