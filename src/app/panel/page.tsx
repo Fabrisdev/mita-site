@@ -32,7 +32,7 @@ export default async function ChooseServerPage() {
         {guilds.map((guild, i) => (
           <li
             key={guild.id}
-            className="flex justify-center items-center gap-5 flex-col min-w-60 p-4 rounded-md border border-[#2e2e33]"
+            className="flex justify-center items-center gap-5 flex-col min-w-60 p-4 rounded-md border border-[#2e2e33] shadow-lg shadow-black"
             style={{
               backgroundColor: `hsl(${(i * 40) % 360}, 20%, 12%)`,
             }}
@@ -63,7 +63,7 @@ export default async function ChooseServerPage() {
             </ol>
             <Link
               href={`/panel/${guild.id}`}
-              className="bg-[hsl(var(--h)_60%_10%)] border border-[#2e2e33] w-full text-center rounded-md p-2 font-bold hover:bg-[hsl(var(--h)_100%_12%)] transition"
+              className="bg-[hsl(var(--h)_60%_10%)] border border-[#2e2e33] w-full text-center rounded-md p-2 font-bold hover:bg-[hsl(var(--h)_100%_12%)] hover:scale-105 transition"
               style={
                 {
                   "--h": (i * 40) % 360,
