@@ -30,7 +30,7 @@ export default async function ChooseServerPage() {
             key={guild.id}
             className="flex justify-center items-center gap-5 flex-col min-w-60 p-4 rounded-md border border-[#2e2e33]"
             style={{
-              backgroundColor: `hsl(${(i * 40) % 360}, 15%, 12%)`,
+              backgroundColor: `hsl(${(i * 40) % 360}, 20%, 12%)`,
             }}
           >
             <p className="font-bold">{guild.name}</p>
@@ -59,7 +59,10 @@ export default async function ChooseServerPage() {
             </ol>
             <Link
               href={`/panel/${guild.id}`}
-              className="bg-[#121214] border border-[#2e2e33] w-full text-center rounded-md p-2 font-bold hover:bg-[#242428] transition"
+              className="bg-red-500 border border-[#2e2e33] w-full text-center rounded-md p-2 font-bold hover:bg-[#242428] transition"
+              style={{
+                backgroundColor: `hsl(${(i * 40) % 360}, 60%, 10%)`,
+              }}
             >
               {messages[i % messages.length]}
             </Link>
