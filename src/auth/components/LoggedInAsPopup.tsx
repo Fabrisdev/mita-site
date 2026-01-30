@@ -16,7 +16,7 @@ export function LoggedInAsPopup({
   const avatarUrl = `https://cdn.discordapp.com/avatars/${id}/${avatar}.png`;
   return (
     <div
-      className={`bg-pink-500 rounded-xl flex justify-center items-center gap-2 z-1000 p-2 border-2 animate-fade-in-down ${disableDefaultPositioning ? "" : "fixed top-2 right-2"}`}
+      className={`bg-pink-500 rounded-xl flex justify-center items-center gap-2 z-1000 p-2 border-2 animate-fade-in-down ${disableDefaultPositioning ? "" : "fixed top-2 lg:right-2"}`}
       style={{
         animationDelay: delay ?? "0",
       }}
