@@ -1,6 +1,7 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { BotService } from "@/bot-service";
+import { MitaHomeButton } from "@/icons/MitaHomeButton";
 import { ServerWithBotCard } from "./components/ServerWithBotCard";
 import { ServerWithoutBotCard } from "./components/ServerWithoutBotCard";
 
@@ -15,7 +16,8 @@ export default async function ChooseServerPage() {
   }));
   return (
     <div className="flex flex-col gap-5 bg-[#121214] min-h-svh">
-      <header className="bg-[#1a1a1e] flex justify-center items-center p-2 w-full border-b border-[#2e2e33]">
+      <header className="bg-[#1a1a1e] flex justify-center items-center p-4 w-full border-b border-[#2e2e33] relative">
+        <MitaHomeButton />
         <p>Server selector</p>
       </header>
       <h1 className="text-3xl text-center font-bold">Choose a server</h1>
