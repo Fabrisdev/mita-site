@@ -54,6 +54,8 @@ export type Guild = {
   id: string;
   icon?: string;
   banner?: string;
+  memberCount: number;
+  highestRole: string;
 };
 
 export type SendBody = {

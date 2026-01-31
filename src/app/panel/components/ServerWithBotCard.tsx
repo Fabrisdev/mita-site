@@ -38,10 +38,10 @@ export function ServerWithBotCard({ guild, i }: { guild: Guild; i: number }) {
       </div>
       <ol className="w-full list-disc pl-4">
         <li>
-          User count: <strong>10.2k</strong>
+          User count: <strong>{guild.memberCount}</strong>
         </li>
         <li>
-          Your role: <strong>Administrator</strong>
+          Your role: <strong>{guild.highestRole}</strong>
         </li>
       </ol>
       <Link
