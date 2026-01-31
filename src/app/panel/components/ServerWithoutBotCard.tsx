@@ -1,8 +1,12 @@
 import type { Guild } from "@/bot-service";
 
 export function ServerWithoutBotCard({ guild }: { guild: Guild }) {
-  const iconUrl = `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}`;
-  const bannerUrl = `https://cdn.discordapp.com/banners/${guild.id}/${guild.banner}`;
+  const iconUrl = guild.icon
+    ? `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}`
+    : null;
+  const bannerUrl = guild.banner
+    ? `https://cdn.discordapp.com/banners/${guild.id}/${guild.banner}`
+    : null;
 
   return (
     <li
@@ -14,16 +18,27 @@ export function ServerWithoutBotCard({ guild }: { guild: Guild }) {
         <div
           className="absolute w-full h-full bg-cover z-10 rounded-md blur-sm"
           style={{
-            backgroundImage: `url(${guild.banner ? bannerUrl : iconUrl})`,
+            backgroundImage: guild.icon
+              ? `url(${guild.banner ? bannerUrl : iconUrl})`
+              : "",
           }}
         ></div>
-        <img
-          src={iconUrl}
-          alt={`${guild.name}'s server`}
-          width={96}
-          height={96}
-          className="rounded-full z-20"
-        />
+        {iconUrl ? (
+          <img
+            src={iconUrl}
+            alt={`${guild.name}'s server`}
+            width={96}
+            height={96}
+            className="rounded-full z-20"
+          />
+        ) : (
+          <p className="h-24 w-24 rounded-full z-20 bg-[#121214] flex justify-center items-center font-bold">
+            {guild.name
+              .split(" ")
+              .map((word) => word[0])
+              .join("")}
+          </p>
+        )}
       </div>
       <a
         href={`https://discord.com/oauth2/authorize?client_id=1461518757015851111&permissions=8&integration_type=0&scope=bot&guild_id=${guild.id}`}
