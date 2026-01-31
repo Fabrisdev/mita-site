@@ -19,9 +19,9 @@ export default async function ChooseServerPage() {
   const botGuildsIds = new Set(guildsBotIsIn.map((guild) => guild.id));
   return (
     <div className="flex flex-col gap-5 bg-[#121214] min-h-svh">
-      <header className="bg-[#1a1a1e] flex justify-center items-center p-4 w-full border-b border-[#2e2e33] relative">
+      <header className="bg-[#1a1a1e] flex lg:justify-center items-center h-12 w-full border-b border-[#2e2e33] relative">
         <MitaHomeButton />
-        <p>Server selector</p>
+        <p className="absolute right-6 lg:static">Server selector</p>
       </header>
       <h1 className="text-3xl text-center font-bold">Choose a server</h1>
       <ul className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] justify-items-center gap-6">
