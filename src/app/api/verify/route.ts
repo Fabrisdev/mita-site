@@ -2,6 +2,7 @@ import { SignJWT } from "jose";
 import { cookies } from "next/headers";
 import { DISCORD_CLIENT_ID, DISCORD_REDIRECT_URI } from "@/consts";
 
+const ADMINISTRATOR = BigInt(0x8);
 const ALLOWED_USER_IDS = [
   "317105612100075520",
   "478728814399324188",
@@ -27,11 +28,12 @@ export async function GET(req: Request) {
   const { id } = userData;
   if (!ALLOWED_USER_IDS.includes(id))
     return Response.redirect(new URL("/?error=not_allowed", req.url));
-
+  const guilds = (await getUserGuilds(data.access_token)) as GuildData[];
   await storeJWTInCookies({
     id,
     username: userData.username,
     avatar: userData.avatar,
+    guilds: organizeGuilds(guilds),
   });
 
   return Response.redirect(new URL("/panel", req.url));
@@ -62,7 +64,7 @@ async function getUserData(accessToken: string) {
   return await response.json();
 }
 
-async function storeJWTInCookies(data: Record<string, string>) {
+async function storeJWTInCookies(data: Record<string, unknown>) {
   const jwt = await new SignJWT(data)
     .setProtectedHeader({ alg: "HS256" })
     .setIssuedAt()
@@ -76,3 +78,37 @@ async function storeJWTInCookies(data: Record<string, string>) {
     path: "/",
   });
 }
+
+async function getUserGuilds(accessToken: string) {
+  const response = await fetch("https://discord.com/api/users/@me/guilds", {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+
+  return await response.json();
+}
+
+function organizeGuilds(guilds: GuildData[]) {
+  return guilds
+    .filter((guild) => {
+      if (guild.owner) return true;
+      const perms = BigInt(guild.permissions);
+      return (perms & ADMINISTRATOR) === ADMINISTRATOR;
+    })
+    .map((guild) => ({
+      id: guild.id,
+      name: guild.name,
+      icon: guild.icon,
+      banner: guild.banner,
+    }));
+}
+
+type GuildData = {
+  id: string;
+  name: string;
+  icon: string;
+  banner: string;
+  permissions: number;
+  owner: boolean;
+};
