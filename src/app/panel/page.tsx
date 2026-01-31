@@ -9,11 +9,7 @@ export default async function ChooseServerPage() {
   const cookieStore = await cookies();
   const session = cookieStore.get("session");
   if (!session) return redirect("/");
-  const _guilds = await BotService.servers({ session });
-  const guilds = Array.from({ length: 10 }, (_, i) => ({
-    ..._guilds[i % _guilds.length],
-    id: crypto.randomUUID(),
-  }));
+  const guilds = await BotService.servers({ session });
   return (
     <div className="flex flex-col gap-5 bg-[#121214] min-h-svh">
       <header className="bg-[#1a1a1e] flex justify-center items-center p-4 w-full border-b border-[#2e2e33] relative">
