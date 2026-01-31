@@ -22,19 +22,11 @@ export function ServerWithoutBotCard({ guild }: { guild: Guild }) {
           className="rounded-full z-20"
         />
       </div>
-      <ol className="w-full list-disc pl-4">
-        <li>
-          User count: <strong>10.2k</strong>
-        </li>
-        <li>
-          Your role: <strong>Administrator</strong>
-        </li>
-      </ol>
       <a
         href={`/panel/${guild.id}`}
-        className="bg-[hsl(var(--h)_60%_10%)] border border-[#2e2e33] w-full text-center rounded-md p-2 font-bold hover:bg-[hsl(var(--h)_100%_12%)] hover:scale-105 transition"
+        className="border border-[#2e2e33] w-full text-center rounded-md p-2 font-bold hover:bg-[hsl(var(--h)_100%_12%)] hover:scale-105 transition"
       >
-        Add to server
+        <p>Add to server</p>
       </a>
     </li>
   );
