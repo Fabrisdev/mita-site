@@ -53,6 +53,7 @@ export type Guild = {
   name: string;
   id: string;
   icon: string;
+  banner: string;
 };
 
 export type SendBody = {
