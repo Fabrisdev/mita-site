@@ -19,7 +19,6 @@ export async function GET(req: Request) {
     return new Response("No code provided", { status: 400 });
 
   const validatedResponse = await validateCode(code);
-  console.log(validatedResponse);
   if (!validatedResponse.ok)
     return Response.redirect(new URL("/?error=invalid_code", req.url));
 
