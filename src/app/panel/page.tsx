@@ -2,6 +2,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { BotService } from "@/bot-service";
 import { ServerWithBotCard } from "./components/ServerWithBotCard";
+import { ServerWithoutBotCard } from "./components/ServerWithoutBotCard";
 
 export default async function ChooseServerPage() {
   const cookieStore = await cookies();
@@ -21,6 +22,13 @@ export default async function ChooseServerPage() {
       <ul className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] justify-items-center gap-6">
         {guilds.map((guild, i) => (
           <ServerWithBotCard key={guild.id} guild={guild} i={i} />
+        ))}
+      </ul>
+      <hr className="border-[#2e2e33]" />
+      <h2 className="text-xl text-center font-bold">Other servers you're in</h2>
+      <ul className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] justify-items-center gap-6">
+        {guilds.map((guild) => (
+          <ServerWithoutBotCard key={guild.id} guild={guild} />
         ))}
       </ul>
     </div>
