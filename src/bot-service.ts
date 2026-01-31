@@ -52,8 +52,8 @@ export namespace BotService {
 export type Guild = {
   name: string;
   id: string;
-  icon: string;
-  banner: string;
+  icon?: string;
+  banner?: string;
 };
 
 export type SendBody = {
