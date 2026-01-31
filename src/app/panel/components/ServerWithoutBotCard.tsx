@@ -26,7 +26,7 @@ export function ServerWithoutBotCard({ guild }: { guild: Guild }) {
         />
       </div>
       <a
-        href={`/panel/${guild.id}`}
+        href={`https://discord.com/oauth2/authorize?client_id=1461518757015851111&permissions=8&integration_type=0&scope=bot&guild_id=${guild.id}`}
         className="border border-[#2e2e33] w-full text-center rounded-md p-2 font-bold hover:bg-[hsl(var(--h)_100%_12%)] hover:scale-105 transition"
       >
         <p>Add to server</p>
