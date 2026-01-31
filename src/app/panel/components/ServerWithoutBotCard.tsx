@@ -1,6 +1,8 @@
 import type { Guild } from "@/bot-service";
 
 export function ServerWithoutBotCard({ guild }: { guild: Guild }) {
+  const iconUrl = `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}`;
+
   return (
     <li
       key={guild.id}
@@ -15,7 +17,7 @@ export function ServerWithoutBotCard({ guild }: { guild: Guild }) {
           }}
         ></div>
         <img
-          src={guild.icon}
+          src={iconUrl}
           alt={`${guild.name}'s server`}
           width={96}
           height={96}
