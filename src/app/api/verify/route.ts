@@ -44,7 +44,7 @@ async function validateCode(code: string) {
   data.append("grant_type", "authorization_code");
   data.append("code", code);
   data.append("redirect_uri", DISCORD_REDIRECT_URI);
-  data.append("scope", "identify");
+  data.append("scope", "identify guilds");
 
   return await fetch("https://discord.com/api/oauth2/token", {
     method: "POST",
