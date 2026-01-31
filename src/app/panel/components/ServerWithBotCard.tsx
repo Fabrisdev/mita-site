@@ -38,7 +38,7 @@ export function ServerWithBotCard({ guild, i }: { guild: Guild; i: number }) {
       </div>
       <ol className="w-full list-disc pl-4">
         <li>
-          User count: <strong>{guild.memberCount}</strong>
+          User count: <strong>{formatMemberCount(guild.memberCount)}</strong>
         </li>
         <li>
           Your role: <strong>{guild.highestRole}</strong>
@@ -57,4 +57,9 @@ export function ServerWithBotCard({ guild, i }: { guild: Guild; i: number }) {
       </Link>
     </li>
   );
+}
+
+function formatMemberCount(memberCount: number) {
+  if (memberCount < 1000) return memberCount;
+  return `${(memberCount / 1000).toFixed(1).replace(".0", "")}k`;
 }
