@@ -2,6 +2,7 @@ import type { Guild } from "@/bot-service";
 
 export function ServerWithoutBotCard({ guild }: { guild: Guild }) {
   const iconUrl = `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}`;
+  const bannerUrl = `https://cdn.discordapp.com/banners/${guild.id}/${guild.banner}`;
 
   return (
     <li
@@ -13,7 +14,7 @@ export function ServerWithoutBotCard({ guild }: { guild: Guild }) {
         <div
           className="absolute w-full h-full bg-cover z-10 rounded-md blur-sm"
           style={{
-            backgroundImage: `url(${guild.icon})`,
+            backgroundImage: `url(${guild.banner ? bannerUrl : iconUrl})`,
           }}
         ></div>
         <img
