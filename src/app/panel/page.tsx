@@ -16,6 +16,7 @@ export default async function ChooseServerPage() {
   if (verifyResult === null) return redirect("/");
   const { guilds } = verifyResult.payload as { guilds: Guild[] };
   const guildsBotIsIn = await BotService.servers({ session });
+  const botGuildsIds = new Set(guildsBotIsIn.map((guild) => guild.id));
   return (
     <div className="flex flex-col gap-5 bg-[#121214] min-h-svh">
       <header className="bg-[#1a1a1e] flex justify-center items-center p-4 w-full border-b border-[#2e2e33] relative">
@@ -31,9 +32,11 @@ export default async function ChooseServerPage() {
       <hr className="border-[#2e2e33]" />
       <h2 className="text-xl text-center font-bold">Other servers you're in</h2>
       <ul className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] justify-items-center gap-6">
-        {guilds.map((guild) => (
-          <ServerWithoutBotCard key={guild.id} guild={guild} />
-        ))}
+        {guilds
+          .filter((guild) => !botGuildsIds.has(guild.id))
+          .map((guild) => (
+            <ServerWithoutBotCard key={guild.id} guild={guild} />
+          ))}
       </ul>
     </div>
   );
