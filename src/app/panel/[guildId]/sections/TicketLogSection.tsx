@@ -16,8 +16,8 @@ export function TicketLogSection({ jwt }: Props) {
   if (isLoading) return <p>Loading...</p>;
   if (!data || data.length === 0) return <p>Nobody has made a ticket yet.</p>;
   return data.map((ticket) => (
-    <div key={ticket._id}>
-      <ul className="list-disc">
+    <div key={ticket._id} className="border p-2 rounded-md">
+      <ul className="list-disc list-inside">
         <li>
           <strong>ID</strong>: {ticket._id}
         </li>
