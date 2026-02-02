@@ -93,6 +93,10 @@ export type Ticket = {
     authorId: string;
     content: string;
     sentAt: number;
+    user: {
+      name: string;
+      icon: string | null;
+    };
   }[];
   _id: string;
   _creationTime: number;
