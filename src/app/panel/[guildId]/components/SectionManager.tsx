@@ -17,7 +17,7 @@ const sections: Record<Section, (jwt: string) => JSX.Element> = {
   Channels: (jwt) => <ChannelsSection jwt={jwt} />,
   Moderation: () => <ModerationSection />,
   "Custom commands": () => <CustomCommandsSection />,
-  "Ticket log": () => <TicketLogSection />,
+  "Ticket log": (jwt) => <TicketLogSection jwt={jwt} />,
   "Welcome & greeting": () => <WelcomeSection />,
 };
 
