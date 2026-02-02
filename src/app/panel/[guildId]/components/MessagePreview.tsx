@@ -5,7 +5,7 @@ type Props = {
   user?: {
     name: string;
     sentAt: number;
-    icon: string;
+    icon: string | null;
   };
 };
 
@@ -13,13 +13,17 @@ export function MessagePreview({ message, user }: Props) {
   return (
     <div className="bg-[#1a1a1e] p-2 rounded-md flex gap-4">
       {user ? (
-        <img
-          src={user.icon}
-          alt={`${user.name}'s icon`}
-          height={48}
-          width={48}
-          className="rounded-full"
-        />
+        user.icon ? (
+          <img
+            src={user.icon}
+            alt={`${user.name}'s icon`}
+            height={48}
+            width={48}
+            className="rounded-full"
+          />
+        ) : (
+          <p className="size-12 rounded-full">?</p>
+        )
       ) : (
         <Image
           src="/favicon.ico"
