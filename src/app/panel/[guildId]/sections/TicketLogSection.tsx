@@ -30,7 +30,7 @@ export function TicketLogSection({ jwt }: Props) {
         </li>
       </ul>
       <div>
-        {ticket.messages.map((message) => (
+        {ticket.messages.toReversed().map((message) => (
           <MessagePreview
             key={message._id}
             message={message.content}
