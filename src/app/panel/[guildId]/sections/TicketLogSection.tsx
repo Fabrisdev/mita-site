@@ -17,16 +17,14 @@ export function TicketLogSection({ jwt }: Props) {
   if (isLoading) return <p>Loading...</p>;
   if (!data || data.length === 0) return <p>Nobody has made a ticket yet.</p>;
   return (
-    <div className="flex flex-col gap-2">
+    <div className="grid grid-cols-[repeat(auto-fit,minmax(500px,1fr))] flex-col gap-2">
       {data.map((ticket) => (
         <div
           key={ticket._id}
-          className="border p-2 rounded-md border-[#28282c] bg-[#121214]"
+          className="border p-2 rounded-md border-[#28282c] bg-[#121214] flex flex-col gap-2"
         >
+          <small className="text-[#7a7b83] text-center">{ticket._id}</small>
           <ul className="list-disc list-inside">
-            <li>
-              <strong>ID</strong>: {ticket._id}
-            </li>
             <li>
               <strong>Opened by</strong>: {ticket.ownerId}
             </li>
