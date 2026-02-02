@@ -47,6 +47,22 @@ export namespace BotService {
       body: JSON.stringify({ message, channelId }),
     });
   }
+
+  export namespace Tickets {
+    export async function all({
+      guildId,
+      session,
+    }: {
+      guildId: string;
+      session: Session;
+    }) {
+      return (await fetch(`${BOT_API_URL}/${guildId}/ticket`, {
+        headers: {
+          Authorization: `Bearer ${getToken(session)}`,
+        },
+      }).then((res) => res.json())) as Ticket[];
+    }
+  }
 }
 
 export type Guild = {
@@ -68,3 +84,20 @@ type Session = RequestCookie | string;
 function getToken(session: Session) {
   return typeof session === "string" ? session : session.value;
 }
+
+export type Ticket = {
+  messages: {
+    _id: string;
+    _creationTime: number;
+    ticketId: string;
+    authorId: string;
+    content: string;
+    sentAt: number;
+  }[];
+  _id: string;
+  _creationTime: number;
+  closedAt?: number | undefined;
+  guildId: string;
+  ownerId: string;
+  status: "open" | "closed";
+};
