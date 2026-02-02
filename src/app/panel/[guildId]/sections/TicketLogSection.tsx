@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
 import { BotService } from "@/bot-service";
+import { MessagePreview } from "../components/MessagePreview";
 
 type Props = {
   jwt: string;
@@ -30,7 +31,11 @@ export function TicketLogSection({ jwt }: Props) {
       </ul>
       <div>
         {ticket.messages.map((message) => (
-          <div key={message._id}>{message.content}</div>
+          <MessagePreview
+            key={message._id}
+            message={message.content}
+            user={{ ...message.user, sentAt: message.sentAt }}
+          />
         ))}
       </div>
     </div>
