@@ -15,18 +15,24 @@ export function TicketLogSection({ jwt }: Props) {
   });
   if (isLoading) return <p>Loading...</p>;
   if (!data || data.length === 0) return <p>Nobody has made a ticket yet.</p>;
-  return (
-    <div>
-      <p>Tickets</p>
+  return data.map((ticket) => (
+    <div key={ticket._id}>
+      <ul className="list-disc">
+        <li>
+          <strong>ID</strong>: {ticket._id}
+        </li>
+        <li>
+          <strong>Opened by</strong>: {ticket.ownerId}
+        </li>
+        <li>
+          <strong>Status</strong>: {ticket.status}
+        </li>
+      </ul>
       <div>
-        {data.map((ticket) => (
-          <ul key={ticket._id}>
-            <p>ID: {ticket._id}</p>
-            <p>Opened by: {ticket.ownerId}</p>
-            <p>Status: {ticket.status}</p>
-          </ul>
+        {ticket.messages.map((message) => (
+          <div key={message._id}>{message.content}</div>
         ))}
       </div>
     </div>
-  );
+  ));
 }
