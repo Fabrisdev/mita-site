@@ -33,13 +33,19 @@ export function TicketLogSection({ jwt }: Props) {
             </li>
           </ul>
           <div className="border rounded-md border-[#28282c]">
-            {ticket.messages.toReversed().map((message) => (
-              <MessagePreview
-                key={message._id}
-                message={message.content}
-                user={{ ...message.user, sentAt: message.sentAt }}
-              />
-            ))}
+            {ticket.messages.length === 0 ? (
+              <MessagePreview message="This ticket got closed without any messages sent." />
+            ) : (
+              ticket.messages
+                .toReversed()
+                .map((message) => (
+                  <MessagePreview
+                    key={message._id}
+                    message={message.content}
+                    user={{ ...message.user, sentAt: message.sentAt }}
+                  />
+                ))
+            )}
           </div>
         </div>
       ))}
