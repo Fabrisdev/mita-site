@@ -46,7 +46,11 @@ export function TicketLogSection({ jwt }: Props) {
           </ul>
           <div className="border rounded-md border-[#28282c]">
             {ticket.messages.length === 0 ? (
-              <MessagePreview message="This ticket got closed without any messages sent." />
+              ticket.status === "open" ? (
+                <MessagePreview message="Nobody has said anything yet." />
+              ) : (
+                <MessagePreview message="This ticket got closed without any messages sent." />
+              )
             ) : (
               ticket.messages
                 .toReversed()
