@@ -12,7 +12,7 @@ type Props = {
 
 export function MessagePreview({ message, user }: Props) {
   return (
-    <div className="bg-[#1a1a1e] p-2 rounded-md flex gap-4">
+    <div className="bg-[#1a1a1e] p-2 rounded-md flex gap-4 items-start">
       {user ? (
         user.icon ? (
           <img
@@ -47,7 +47,7 @@ export function MessagePreview({ message, user }: Props) {
             </small>
           )}
         </div>
-        <p className="text-gray-200">{message}</p>
+        <p className="text-gray-200 whitespace-pre-wrap">{message}</p>
       </div>
     </div>
   );
