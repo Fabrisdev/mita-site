@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
+import { discordLikeTimestamp } from "@/app/general/helper";
 import { BotService } from "@/bot-service";
 import { MessagePreview } from "../components/MessagePreview";
 
@@ -31,6 +32,12 @@ export function TicketLogSection({ jwt }: Props) {
             <li>
               <strong>Status</strong>: {ticket.status}
             </li>
+            {ticket.closedAt && (
+              <li>
+                <strong>Closed at</strong>:{" "}
+                {discordLikeTimestamp(ticket.closedAt)}
+              </li>
+            )}
           </ul>
           <div className="border rounded-md border-[#28282c]">
             {ticket.messages.length === 0 ? (
