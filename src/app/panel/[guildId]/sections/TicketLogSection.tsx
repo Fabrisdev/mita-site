@@ -24,13 +24,18 @@ export function TicketLogSection({ jwt }: Props) {
           key={ticket._id}
           className="border p-2 rounded-md border-[#28282c] bg-[#121214] flex flex-col gap-2"
         >
-          <small className="text-[#7a7b83] text-center">{ticket._id}</small>
+          <div className="flex justify-between">
+            <small
+              className={`font-bold p-1 rounded-md border border-[#28282c] ${ticket.status === "open" ? "bg-blue-500" : "bg-red-500"}`}
+            >
+              {ticket.status.toUpperCase()}
+            </small>
+            <small className="text-[#7a7b83] text-center">{ticket._id}</small>
+          </div>
+
           <ul className="list-disc list-inside">
             <li>
               <strong>Opened by</strong>: {ticket.ownerId}
-            </li>
-            <li>
-              <strong>Status</strong>: {ticket.status}
             </li>
             {ticket.closedAt && (
               <li>
