@@ -18,11 +18,11 @@ export function TicketLogSection({ jwt }: Props) {
   if (isLoading) return <p>Loading...</p>;
   if (!data || data.length === 0) return <p>Nobody has made a ticket yet.</p>;
   return (
-    <div className="columns-[500px]">
+    <div className="columns-[500px] gap-x-2">
       {data.map((ticket) => (
         <div
           key={ticket._id}
-          className="border p-2 rounded-md border-[#28282c] bg-[#121214] flex flex-col gap-2 break-inside-avoid"
+          className="border p-2 rounded-md border-[#28282c] bg-[#121214] flex flex-col gap-2 break-inside-avoid mb-2"
         >
           <div className="flex justify-between">
             <small
