@@ -33,9 +33,13 @@ export function TicketLogSection({ jwt }: Props) {
             <small className="text-[#7a7b83] text-center">{ticket._id}</small>
           </div>
 
-          <ul className="list-disc list-inside">
+          <ul>
             <li>
               <strong>Opened by</strong>: {ticket.ownerId}
+            </li>
+            <li>
+              <strong>Opened at</strong>:{" "}
+              {discordLikeTimestamp(ticket._creationTime)}
             </li>
             {ticket.closedAt && (
               <li>
