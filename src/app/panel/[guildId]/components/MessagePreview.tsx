@@ -47,7 +47,7 @@ export function MessagePreview({ message, user }: Props) {
             </small>
           )}
         </div>
-        <p className="text-gray-200 whitespace-pre-wrap">{message}</p>
+        <p className="text-gray-200 whitespace-pre-wrap">{message.trim()}</p>
       </div>
     </div>
   );
