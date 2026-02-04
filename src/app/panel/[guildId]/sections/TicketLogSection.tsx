@@ -57,7 +57,7 @@ export function TicketLogSection({ jwt }: Props) {
               )
             ) : (
               ticket.messages
-                .toReversed()
+                .toSorted((a, b) => a.sentAt - b.sentAt)
                 .map((message) => (
                   <MessagePreview
                     key={message._id}
